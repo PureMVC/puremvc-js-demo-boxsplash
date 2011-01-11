@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - ViewPrepCommand</title>
+		<title>JsDoc Reference - Boxsplash.controller.StartupCommand</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -191,35 +191,35 @@ ul.inheritsList
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/ApplicationFacade.html">ApplicationFacade</a></li>
+	<li><a href="../symbols/Boxsplash.ApplicationFacade.html">Boxsplash.ApplicationFacade</a></li>
 	
-	<li><a href="../symbols/Box.html">Box</a></li>
+	<li><a href="../symbols/Boxsplash.controller.ModelPrepCommand.html">Boxsplash.controller.ModelPrepCommand</a></li>
 	
-	<li><a href="../symbols/BoxConfigVO.html">BoxConfigVO</a></li>
+	<li><a href="../symbols/Boxsplash.controller.RetrieveConfigOptionCommand.html">Boxsplash.controller.RetrieveConfigOptionCommand</a></li>
 	
-	<li><a href="../symbols/ConfigProxy.html">ConfigProxy</a></li>
+	<li><a href="../symbols/Boxsplash.controller.StartupCommand.html">Boxsplash.controller.StartupCommand</a></li>
 	
-	<li><a href="../symbols/ControlPanel.html">ControlPanel</a></li>
+	<li><a href="../symbols/Boxsplash.controller.ViewPrepCommand.html">Boxsplash.controller.ViewPrepCommand</a></li>
 	
-	<li><a href="../symbols/ControlPanelMediator.html">ControlPanelMediator</a></li>
+	<li><a href="../symbols/Boxsplash.model.ConfigProxy.html">Boxsplash.model.ConfigProxy</a></li>
 	
-	<li><a href="../symbols/ModelPrepCommand.html">ModelPrepCommand</a></li>
+	<li><a href="../symbols/Boxsplash.model.vo.BoxConfigVO.html">Boxsplash.model.vo.BoxConfigVO</a></li>
 	
-	<li><a href="../symbols/RetrieveConfigOptionCommand.html">RetrieveConfigOptionCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.Box.html">Boxsplash.view.components.Box</a></li>
 	
-	<li><a href="../symbols/Shell.html">Shell</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></li>
 	
-	<li><a href="../symbols/ShellMediator.html">ShellMediator</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.core.UIComponent.html">Boxsplash.view.components.core.UIComponent</a></li>
 	
-	<li><a href="../symbols/StartupCommand.html">StartupCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.Shell.html">Boxsplash.view.components.Shell</a></li>
 	
-	<li><a href="../symbols/UIComponent.html">UIComponent</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></li>
 	
-	<li><a href="../symbols/ViewPrepCommand.html">ViewPrepCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.ControlPanelMediator.html">Boxsplash.view.ControlPanelMediator</a></li>
 	
-	<li><a href="../symbols/WorldSpace.html">WorldSpace</a></li>
+	<li><a href="../symbols/Boxsplash.view.ShellMediator.html">Boxsplash.view.ShellMediator</a></li>
 	
-	<li><a href="../symbols/WorldSpaceMediator.html">WorldSpaceMediator</a></li>
+	<li><a href="../symbols/Boxsplash.view.WorldSpaceMediator.html">Boxsplash.view.WorldSpaceMediator</a></li>
 	
 </ul>
 <hr />
@@ -230,29 +230,30 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class ViewPrepCommand
+				Class Boxsplash.controller.StartupCommand
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					SimpleCommand.<br />
+					Puremvc.patterns.MacroCommand.<br />
 				
 			
-				<code>SimpleCommand</code> subclass that is
-responsible for preparing the primary View.  This is where the
-<code>Mediator</code> subclass assigned to the Shell is
- registered with the <code>Model</code>.
+				A <code>MacroCommand</code> subclass
+used to satisfy or initialize dependency handling.<p>
+In this case, our <code>ShellMediator</code>
+needs to be registered with the <code>View</code>
+in order to begin communication with the system.</p>
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/boxsplash.js.html">boxsplash.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/i__workspace_Javascript_BoxSplash_1_0_bin_js_boxsplash_ext-debug.js.html">boxsplash_ext-debug.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class ViewPrepCommand.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Boxsplash.controller.StartupCommand.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -265,7 +266,7 @@ responsible for preparing the primary View.  This is where the
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/ViewPrepCommand.html#constructor">ViewPrepCommand</a></b>()
+								<b><a href="../symbols/Boxsplash.controller.StartupCommand.html#constructor">Boxsplash.controller.StartupCommand</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -281,7 +282,7 @@ responsible for preparing the primary View.  This is where the
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class ViewPrepCommand.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Boxsplash.controller.StartupCommand.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -294,9 +295,10 @@ responsible for preparing the primary View.  This is where the
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ViewPrepCommand.html#execute">execute</a></b>(notification)
+								<div class="fixedFont"><b><a href="../symbols/Boxsplash.controller.StartupCommand.html#initializeMacroCommand">initializeMacroCommand</a></b>()
 								</div>
-								<div class="description">Executes the command.</div>
+								<div class="description">Overridden to populate the <code>MacroCommand</code>'s
+<code>subCommands</code> array.</div>
 							</td>
 						</tr>
 					
@@ -317,12 +319,12 @@ responsible for preparing the primary View.  This is where the
 				</div>
 				
 				<div class="fixedFont">
-						<b>ViewPrepCommand</b>()
+						<b>Boxsplash.controller.StartupCommand</b>()
 				</div>
 				
 				<div class="description">
 					
-					<br /><i>Author: </i>Justin Wilaby.
+					<br /><i>Author: </i>Justin Wilaby, Tony DeFusco.
 				</div>
 				
 				
@@ -334,15 +336,6 @@ responsible for preparing the primary View.  This is where the
 					
 					
 					
-					
-						<dl class="detailList">
-						<dt class="heading">See:</dt>
-						
-							<dd><a href="../symbols/ShellMediator.html">ShellMediator</a></dd>
-						
-							<dd><a href="../symbols/Shell.html">Shell</a></dd>
-						
-						</dl>
 					
 
 			</div>
@@ -357,17 +350,16 @@ responsible for preparing the primary View.  This is where the
 					Method Detail
 				</div>
 				
-					<a name="execute"> </a>
+					<a name="initializeMacroCommand"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>execute</b>(notification)
+					<b>initializeMacroCommand</b>()
 					
 					</div>
 					<div class="description">
-						Executes the command. A <code>Notification</code>
-instance will always be present as an argument to
-this method.
+						Overridden to populate the <code>MacroCommand</code>'s
+<code>subCommands</code> array.
 						
 						
 					</div>
@@ -375,24 +367,20 @@ this method.
 					
 					
 						
+						
+						
+						
+						
+						
+						
 							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
+							<dt class="heading">See:</dt>
 							
-								<dt>
-									<span class="light fixedFont">{Notification}</span> <b>notification</b>
-									
-								</dt>
-								<dd>The notification containing
-the view instance in the <code>body</code> property.
-(In this case our Shell)</dd>
+								<dd><a href="../symbols/Boxsplash.controller.ModelPrepCommand.html">Boxsplash.controller.ModelPrepCommand</a></dd>
+							
+								<dd><a href="../symbols/Boxsplash.controller.ViewPrepCommand.html">Boxsplash.controller.ViewPrepCommand</a></dd>
 							
 							</dl>
-						
-						
-						
-						
-						
-						
 						
 
 					
@@ -409,7 +397,7 @@ the view instance in the <code>body</code> property.
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Feb 07 2010 09:23:12 GMT-0800 (PST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 19 2010 17:47:12 GMT-0500 (EST)
 		</div>
 	</body>
 </html>

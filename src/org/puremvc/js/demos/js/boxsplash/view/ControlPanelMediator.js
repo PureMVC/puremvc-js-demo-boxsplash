@@ -1,152 +1,151 @@
 /**
- * @misc
- * @class The <code>Mediator</code> subclass attached to the
- * <code>ControlPanel</code> View. Its primary responsibilities here
- * are to listen for and notify the system of user interactions that change
- * the state of the application including that of other Views; specifically
- * start/stop and config button clicks.  This <code>Mediator</code> is
- * registered by the <code>ShellMediator</code>'s constructor.
- *
- * @param {ControlPanel} viewComponent The <code>ControlPanel</code> instance
- * assigned to this mediator.
- * @see ControlPanel
- * @see ShellMediator
- * @author Justin Wilaby
+ * @lends Boxsplash.view.ControlPanelMediator.prototype
  */
-var ControlPanelMediator = function(viewComponent /* ControlPanel */){
+Ext.namespace('Boxsplash.view');
+Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
+  /**
+   * @class The <code>Mediator</code> subclass attached to the
+   * <code>ControlPanel</code> <code>View</code>. Its primary responsibilities here
+   * are to listen for and notify the system of user interactions that change
+   * the state of the application including that of other <code>View<code>s; specifically
+   * start/stop and config button clicks.  This <code>Mediator</code> is
+   * registered by the <code>ShellMediator</code>'s constructor.
+   *
+   * @extends Puremvc.patterns.Mediator
+   *
+   * @param {Boxsplash.view.components.ControlPanel} viewComponent the <code>ControlPanel</code> instance
+   * assigned to this mediator.
+   *
+   * @see Boxsplash.view.components.ControlPanel
+   * @see Boxsplash.view.ShellMediator
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function(viewComponent /* ControlPanel */) {
+    Boxsplash.view.ControlPanelMediator.superclass.constructor.call(this, Boxsplash.view.ControlPanelMediator.NAME, viewComponent);
+    this.controlPanel = this.getViewComponent();
+    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
 
-    /**
-     * @ignore
-     */
-    this.Extends = Mediator;
-    /**
-     * A named shortcut to the ControlPanel instance.  This
-     * prevents us from having to reference the more
-     * ambiguous <code>viewComponent</code> property.
-     * @type ControlPanel
-     */
-    this.controlPanel = null;
+    // Replace listener handlers with methods bound to 'this'
+    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
+    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
+  },
 
-    /**
-     * The <code>ConfigProxy</code> instance registered to the
-     * <code>ApplicationFacade</code>. It is retrieved here to act as
-     * a discriptor for the initial state of the View based on the <code>data</code>
-     * property contents.
-     *
-     * @type ConfigProxy
-     * @see ApplicatinFacade
-     */
-    this.configProxy = null;
+  /**
+   * A named shortcut to the <code>ControlPanel</code> instance.  This
+   * prevents us from having to reference the more
+   * ambiguous <code>viewComponent</code> property.
+   * @type Boxsplash.view.components.ControlPanel
+   */
+  controlPanel: null,
 
-    /**
-     * @ignore
-     */
-    this.initialize = function(viewComponent /* ControlPanel */)
-    {
-	this.parent(ControlPanelMediator.NAME, viewComponent);
+  /**
+   * The <code>ConfigProxy</code> instance registered to the
+   * <code>ApplicationFacade</code>. It is retrieved here to act as
+   * a descriptor for the initial state of the <code>View</code> based on
+   * the <code>data</code> property contents.
+   *
+   * @type Boxsplash.model.ConfigProxy
+   * @see Boxsplash.ApplicationFacade
+   */
+  configProxy: null,
 
-	this.controlPanel = this.getViewComponent();
-	this.configProxy = this.facade.retrieveProxy(ConfigProxy.NAME);
-	// Replace listener handlers with methods bound to 'this'
-	this.loadConfigHandler = this.loadConfigHandler.bind(this);
-	this.toggleStartStopHandler = this.toggleStartStopHandler.bind(this);
-    };
+  /**
+   * Provides a list of notification interests to the <code>View</code>.
+   * Without an accurate list, the <code>handleNotification()</code> method
+   * may not be invoked.  A common mistake made by developers is to provide handling
+   * routines in the <code>handleNotification()</code> method but forget to
+   * add the notification name in the <code>listNotificationInterests()</code> array.
+   * <p>Note that changing this array at runtime will not have any effect on
+   * notification interests since this method is called by the <code>View</code>
+   * a single time when the <code>Mediator</code> is first registered.
+   *
+   * @return {String[]} the array of notification names to act upon.
+   */
+  listNotificationInterests: function() {
+    return [
+            Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED,
+            Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED
+            ];
+  },
 
-    /**
-     * Provides a list of notification interests to the <code>View</code>.
-     * Without an accurate list, the <code>handleNotification()</code> method will
-     * may be invoked.  A common mistake by developers is to provide handling
-     * routines in the <code>handleNotification()</code> method but forget to
-     * add the notification name in the <code>listNotificationInterests()</code> array.
-     * <p>Note that changing this array at runtime will not have any affect on
-     * notification interests since this method is called by the <code>View</code>
-     * a single time when the <code>Mediator</code> is first registered.
-     *
-     * @return {String[]} the array of notification names to act upon.
-     */
-    this.listNotificationInterests = function()
-    {
-	return [
-	    ConfigProxy.CONFIG_OPTION_RETRIEVED,
-	    ApplicationFacade.ANIMATION_STATE_CHANGED
-	];
-    };
+  /**
+   * Handles notifications broadcasted by the system provided that
+   * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
+   * return value.
+   *
+   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   */
+  handleNotification: function(notification /* Notification */) {
+    switch (notification.getName()) {
+      case Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED:
+        var boxConfigVO = notification.getBody();
+        this.controlPanel.setConfigurationLabel(boxConfigVO.id);
+        break;
 
-    /**
-     * Handles notifications broadcasted by the system provided
-     * the notification is listed in the <code>listNotificationInterests()</code>
-     * return value.
-     *
-     * @param {Notification} notification The notification to act upon.
-     */
-    this.handleNotification = function(notification /* Notification */)
-    {
-	switch(notification.getName())
-	{
-	    case ConfigProxy.CONFIG_OPTION_RETRIEVED:
-		var boxConfigVO = notification.getBody();
-		this.controlPanel.setConfigurationLabel(boxConfigVO.id);
-		break;
+      case Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED:
+        this.controlPanel.animationStateChanged(notification.getBody());
+        break;
+    }
+  },
 
-	    case ApplicationFacade.ANIMATION_STATE_CHANGED:
-		this.controlPanel.animationStateChanged(notification.getBody());
-		break;
-	}
-    };
+  /**
+   * Performs actions when the <code>Mediator</code> is registered by
+   * the <code>View</code>.  Here we listen for the "loadConfig" and "toggleStartStop"
+   * events from the <code>ControlPanel</code> and set the configuration buttons
+   * based on the contents of the <code>ConfigProxy</code>'s <code>data</code>
+   * property.
+   *
+   * @see Boxsplash.view.components.ControlPanel
+   * @see Boxsplash.model.ConfigProxy
+   */
+  onRegister: function() {
+    Boxsplash.view.ControlPanelMediator.superclass.onRegister.call(this);
+    this.controlPanel.addListener("loadConfig", this.loadConfigHandler);
+    this.controlPanel.addListener("toggleStartStop", this.toggleStartStopHandler);
+    this.controlPanel.setConfigurationButtons(this.configProxy.data);
+  },
 
-    /**
-     * Performs actions when the <code>Mediator</code> is registered by
-     * the <code>View</code>.  Here we listen for the "loadConfig" and "toggleStartStop"
-     * events from the <code>ControlPanel</code> and set the configuration buttons
-     * based on the contents of the <code>ConfigProxy</code>'s <code>data</code>
-     * property.
-     *
-     * @see ControlPanel
-     * @see ConfigProxy
-     */
-    this.onRegister = function()
-    {
-	this.parent();
-	this.controlPanel.addEvent("loadConfig", this.loadConfigHandler);
-	this.controlPanel.addEvent("toggleStartStop", this.toggleStartStopHandler);
+  /**
+   * Removes listeners so that the <code>View</code> can be properly disposed of
+   * and garbage collected.
+   */
+  onRemove: function() {
+    Boxsplash.view.ControlPanelMediator.superclass.onRemove.call(this);
+    this.controlPanel.removeListener("loadConfig", this.loadConfigHandler);
+    this.controlPanel.removeListener("toggleStartStop", this.toggleStartStopHandler);
+  },
 
-	this.controlPanel.setConfigurationButtons(this.configProxy.data);
-    };
+  /**
+   * Event handler for the "loadConfig" event dispatched by the
+   * <code>ControlPanel</code> in response to user clicks on any
+   * of the configuration buttons.
+   *
+   * @param {int} index the index of the desired configuration option settings to load.
+   */
+  loadConfigHandler: function(index) {
+    this.sendNotification(Boxsplash.ApplicationFacade.RETRIEVE_CONFIG_OPTION, index);
+  },
 
-     /**
-     * Removes listeners so the View can be properly disposed of
-     * and garbage collected
-     */
-    this.onRemove = function()
-    {
-	this.parent();
-	this.controlPanel.removeEvent("loadConfig", this.loadConfigHandler);
-	this.controlPanel.removeEvent("toggleStartStop", this.toggleStartStopHandler);
-    };
+  /**
+   * Event handler for the "toggleStartStop" event dispatched
+   * by the <code>ControlPanel</code> in response to user clicks
+   * on the <i>startStop</i> button.
+   */
+  toggleStartStopHandler: function() {
+    this.sendNotification(Boxsplash.ApplicationFacade.TOGGLE_START_STOP);
+  }
+});
 
-    /**
-     * Event handler for the "loadConfig" event dispatched by the
-     * <code>ControlPanel</code> in respone to user clicks on any
-     * of the configuration buttons.
-     */
-    this.loadConfigHandler = function(index)
-    {
-	this.sendNotification(ApplicationFacade.RETRIEVE_CONFIG_OPTION, index);
-    };
-
-    /**
-     * Event handler for the "toggleStartStop" event dispatched
-     * by the <code>ControlPanel</code> in respone to user clicks
-     * on the startStop button
-     */
-    this.toggleStartStopHandler = function()
-    {
-	this.sendNotification(ApplicationFacade.TOGGLE_START_STOP);
-    };
-};
-ControlPanelMediator = new Class(new ControlPanelMediator());
-/**
- * Constant used as the unique name and identifier.
- * @type String
- */
-ControlPanelMediator.NAME = "ControlPanelMediator";
+Ext.apply(Boxsplash.view.ControlPanelMediator, {
+  /**
+   * Constant used as the unique name and identifier for this <code>Mediator</code> subclass.
+   * @type String
+   * @constant
+   * @memberof Boxsplash.view.ControlPanelMediator
+   */
+  NAME: "ControlPanelMediator"
+});

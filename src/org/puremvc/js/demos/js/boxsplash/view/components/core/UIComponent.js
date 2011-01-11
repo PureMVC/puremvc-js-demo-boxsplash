@@ -1,116 +1,157 @@
 /**
- * @misc
- * @class An ultra-light framework class used as a wrapper
- * and psudo-extenstion of the MooTools Native Element
- * implementation. Its primary goal is to encuorage the addition
- * of  elements to the DOM in a top-down fashion.
- *
- * @param {mixed} element String or Element to become the subject
- * of ths instance.<p>If a string is passed, an element ID is assumed first.
- * if the element ID is not found in the DOM, a tag name is assumed and
- * MooTools will attempt to create that Element.</p><p>If an Element is
- * passed in, it is left as-is.</p>
- *
- * @param {Object} properties The Object containing the default properties
- * to be set on the Element.
+ * @lends Boxsplash.view.components.core.UIComponent.prototype
  */
-var UIComponent = function(element /* mixed String or Element */, properties /* Object */){
+Ext.namespace('Boxsplash.view.components.core');
+Boxsplash.view.components.core.UIComponent = Ext.extend(Ext.util.Observable, {
+  /**
+   * <code>true</code> if the component has
+   * been initialized, <code>false</code> otherwise.
+   * @type Boolean
+   */
+  initialized: false,
 
-    /**
-     * <code>true</code> if the component has
-     * been initialized <code>false</code> otherwise
-     * @type Boolean
-     */
-    this.initialized = false;
+  /**
+   * The <code>Ext.Element</code> used as
+   * the subject of this UIComponent instance.
+   * @type Ext.Element
+   */
+  element: null,
 
-    /**
-     * The Native <code>Element</code> used as
-     * the subject of this UIComponent instance.
-     * @type Element
-     */
-    this.element = null;
+  /**
+   * @class A wrapper class whose primary goal is to encourage the addition
+   * of elements to the DOM in a top-down fashion.
+   *
+   * @extends Ext.util.Observable
+   *
+   * @param {String|Ext.Element} element String or Ext.Element to become the subject
+   * of the instance.<p>If a string is passed, an element ID is assumed first.
+   * If the element ID is not found in the DOM, a tag name is assumed and
+   * Ext core will attempt to create that Ext.Element.</p><p>If an Ext.Element is
+   * passed in, it is left as-is.</p>
+   * @param {Object} config The Object containing the default configuration properties
+   * to use to pre-configure the event handling mechanism of Ext.util.Observable.
+   * @param {Object} styles The Object containing CSS stylesheet properties to use to
+   * style the underlying Ext.Element.
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @see Boxsplash.view.components.Box
+   * @see Boxsplash.view.components.ControlPanel
+   * @see Boxsplash.view.components.Shell
+   * @see Boxsplash.view.components.WorldSpace
+   *
+   * @constructs
+   */
+  constructor: function(element /* String/Ext.Element */, config /* Object */, styles /* Object */) {
+    if (element) {
+      this.element = Boxsplash.view.components.core.UIComponent.buildElement(element, styles);
+    }
+    if (config) {
+      if (config.events) {
+        this.addEvents(config.events);
+      }
+      if (config.listeners) {
+        this.listeners = config.listeners;
+      }
+      Boxsplash.view.components.core.UIComponent.superclass.constructor.call(this, config);
+    }
+    else {
+      Boxsplash.view.components.core.UIComponent.superclass.constructor.call(this);
+    }
+  },
 
-    /**
-     * @ignore
-     */
-    this.initialize = function(element /* mixed String or Element */, properties /* Object */)
-    {
-	this.element = $(element);
-	if (!this.element)
-	    this.element = new Element(element, properties);
-	else
-	    this.element.setProperties(properties);
-	// Copy methods of the Element object to
-	// 'this' and bind the functions to the element itself.
-	// This creates a transparent wrapper in the UIComponent for
-	// each method of the Element.
-	var e = this.element;
-	for (var key in e)
-	{
-	    var type = null;
-	    try
-	    {
-		// IE 7+ has a problem with this sometimes.
-		type = typeof e[key];
-	    }
-	    catch(e){}
-	    if (type == "function" && !this[key])
-	    {
-		try
-		{
-		    // Safari has trouble here with some function binding
-		    this[key] = e[key].bind(e);
-		}
-		catch(e){}
-	    }
-	}
-    };
+  /**
+   * Used in the creation of children used in this component.
+   * Override this method to create new <code>UIComponent</code>s or 'grab'
+   * existing DOM nodes.
+   */
+  initializeChildren: function(){},
 
-    /**
-     * Used in the creation of children used in this component.
-     * Override this method to create new UIComponents or 'grab'
-     * existing DOM nodes.
-     */
-    this.initializeChildren = function(){};
-    /**
-     * Called after <code>initializeChildren()</code>.
-     * Override this method for additional processing
-     * or adding event listeners to children
-     */
-    this.childrenInitialized = function(){};
-    /**
-     * Called after <code>childrenInitialized()</code>
-     * Override this method to perform any final processing
-     * before the child is considered initialized.
-     */
-    this.initializationComplete = function()
-    {
-	this.initialized = true;
-    };
+  /**
+   * Called after <code>initializeChildren()</code>.
+   * Override this method for additional processing
+   * or adding event listeners to children.
+   */
+  childrenInitialized: function(){},
 
-    /**
-     * Wrapper for the MooTools <code>Element.grab()</code>
-     * that serves 2 primary purposes.
-     * <ol>
-     * <li>Appends the child UIComponent's DOMElement
-     * to this one.</li>
-     * <li>calls the child's initialization routines to gaurantee all
-     * elements are added to the DOM in a 'top down' fashion. (else IE will leak like a siv)</li>
-     * </ol>
-     * @param {UIComponent} child The child to append.
-     * @return {UIComponent} this object - can be used for chaining
-     */
-    this.addChild = function(child /* UIComponent */ )
-    {
-	this.grab(child.element);
-	// Initialize child
-	child.initializeChildren();
-	child.childrenInitialized();
-	child.initializationComplete();
-	// Fire an added event
-	child.fireEvent('added');
+  /**
+   * Called after <code>childrenInitialized()</code>.
+   * Override this method to perform any final processing
+   * before the child is considered initialized.
+   */
+  initializationComplete: function(){
+    this.initialized = true;
+  },
 
-	return this;
-    };
-};
-UIComponent = new Class(new UIComponent());
+  /**
+   * Adds the given component as an immediate child to this <code>UIComponent</code> instance
+   * and invokes the three entry point methods to manage the children of the given component.
+   * @param {Boxsplash.view.components.core.UIComponent} child The child component to append.
+   *
+   * @return this object - can be used for method/property chaining.
+   * @type Boxsplash.view.components.core.UIComponent
+   */
+  addChild: function(child /* UIComponent */) {
+    this.element.appendChild(child.element);
+
+    // Initialize children
+    child.initializeChildren();
+    child.childrenInitialized();
+    child.initializationComplete();
+
+    return this;
+  }
+});
+
+Ext.apply(Boxsplash.view.components.core.UIComponent, {
+  /**
+   * Convenience method for creating and configuring an Ext.Element instance.
+   *
+   * @param element {String|Ext.Element|Object} The String id of an element in the DOM,
+   * an instance of Ext.Element, or the Object containing the default configuration properties
+   * that describe a DOM element to use to set up the underlying Ext.Element.
+   * @param {Object} styles The Object containing CSS stylesheet properties to use to
+   * style the underlying Ext.Element.
+   *
+   * @memberof Boxsplash.view.components.core.UIComponent
+   */
+  buildElement: function(element /* String|Ext.Element|Object */, styles /* Object */) {
+    var el = null;
+    if (element) {
+      if (Ext.isString(element) || Ext.isElement(element)){
+        el = Ext.get(element);
+        if (el) {
+          el = new Ext.Element(el, true);
+        }
+      }
+      else if (Ext.isObject(element)) {
+        el = new Ext.Element(Ext.DomHelper.createDom(element));
+      }
+      if (styles) {
+        if (Ext.isObject(styles)) {
+          Ext.DomHelper.applyStyles(el.dom, styles);
+        }
+      }
+    }
+    return el;
+  },
+
+  /**
+   * Convenience method for creating a simple instance of UIComponent without the details
+   * of preconfiguring the event handling mechanism of Ext.util.Observable.
+   *
+   * @param element {String|Ext.Element|Object} The String id of an element in the DOM,
+   * an instance of Ext.Element, or the Object containing the default configuration properties
+   * that describe a DOM element to use to set up the underlying Ext.Element.
+   * @param {Object} styles The Object containing CSS stylesheet properties to use to
+   * style the underlying Ext.Element.
+   *
+   * @memberof Boxsplash.view.components.core.UIComponent
+   */
+  buildComponent: function(element, styles) {
+    var el = Boxsplash.view.components.core.UIComponent.buildElement(element, styles);
+    var component = new Boxsplash.view.components.core.UIComponent(el);
+    return component;
+  }
+});

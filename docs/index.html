@@ -186,35 +186,35 @@ ul.inheritsList
 	
 	<li><i><a href="symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="symbols/ApplicationFacade.html">ApplicationFacade</a></li>
+	<li><a href="symbols/Boxsplash.ApplicationFacade.html">Boxsplash.ApplicationFacade</a></li>
 	
-	<li><a href="symbols/Box.html">Box</a></li>
+	<li><a href="symbols/Boxsplash.controller.ModelPrepCommand.html">Boxsplash.controller.ModelPrepCommand</a></li>
 	
-	<li><a href="symbols/BoxConfigVO.html">BoxConfigVO</a></li>
+	<li><a href="symbols/Boxsplash.controller.RetrieveConfigOptionCommand.html">Boxsplash.controller.RetrieveConfigOptionCommand</a></li>
 	
-	<li><a href="symbols/ConfigProxy.html">ConfigProxy</a></li>
+	<li><a href="symbols/Boxsplash.controller.StartupCommand.html">Boxsplash.controller.StartupCommand</a></li>
 	
-	<li><a href="symbols/ControlPanel.html">ControlPanel</a></li>
+	<li><a href="symbols/Boxsplash.controller.ViewPrepCommand.html">Boxsplash.controller.ViewPrepCommand</a></li>
 	
-	<li><a href="symbols/ControlPanelMediator.html">ControlPanelMediator</a></li>
+	<li><a href="symbols/Boxsplash.model.ConfigProxy.html">Boxsplash.model.ConfigProxy</a></li>
 	
-	<li><a href="symbols/ModelPrepCommand.html">ModelPrepCommand</a></li>
+	<li><a href="symbols/Boxsplash.model.vo.BoxConfigVO.html">Boxsplash.model.vo.BoxConfigVO</a></li>
 	
-	<li><a href="symbols/RetrieveConfigOptionCommand.html">RetrieveConfigOptionCommand</a></li>
+	<li><a href="symbols/Boxsplash.view.components.Box.html">Boxsplash.view.components.Box</a></li>
 	
-	<li><a href="symbols/Shell.html">Shell</a></li>
+	<li><a href="symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></li>
 	
-	<li><a href="symbols/ShellMediator.html">ShellMediator</a></li>
+	<li><a href="symbols/Boxsplash.view.components.core.UIComponent.html">Boxsplash.view.components.core.UIComponent</a></li>
 	
-	<li><a href="symbols/StartupCommand.html">StartupCommand</a></li>
+	<li><a href="symbols/Boxsplash.view.components.Shell.html">Boxsplash.view.components.Shell</a></li>
 	
-	<li><a href="symbols/UIComponent.html">UIComponent</a></li>
+	<li><a href="symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></li>
 	
-	<li><a href="symbols/ViewPrepCommand.html">ViewPrepCommand</a></li>
+	<li><a href="symbols/Boxsplash.view.ControlPanelMediator.html">Boxsplash.view.ControlPanelMediator</a></li>
 	
-	<li><a href="symbols/WorldSpace.html">WorldSpace</a></li>
+	<li><a href="symbols/Boxsplash.view.ShellMediator.html">Boxsplash.view.ShellMediator</a></li>
 	
-	<li><a href="symbols/WorldSpaceMediator.html">WorldSpaceMediator</a></li>
+	<li><a href="symbols/Boxsplash.view.WorldSpaceMediator.html">Boxsplash.view.WorldSpaceMediator</a></li>
 	
 </ul>
 <hr />
@@ -231,27 +231,42 @@ ul.inheritsList
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/ApplicationFacade.html">ApplicationFacade</a></h2>
-				<i>concrete</i> Facade implementation used to
-facilitate the startup process of the MV&C.
+				<h2><a href="symbols/Boxsplash.ApplicationFacade.html">Boxsplash.ApplicationFacade</a></h2>
+				<p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
+       process of the MVC.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/Box.html">Box</a></h2>
-				The particle used in the 3D animations.
+				<h2><a href="symbols/Boxsplash.controller.ModelPrepCommand.html">Boxsplash.controller.ModelPrepCommand</a></h2>
+				<code>SimpleCommand</code> subclass that is
+responsible for preparing the data <code>Model</code>.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/BoxConfigVO.html">BoxConfigVO</a></h2>
-				The primary Value Object used to store and retrieve
-configuration data used in the application
+				<h2><a href="symbols/Boxsplash.controller.RetrieveConfigOptionCommand.html">Boxsplash.controller.RetrieveConfigOptionCommand</a></h2>
+				<code>SimpleCommand</code> subclass
+used to retrieve configuration data from the <code>ConfigProxy</code>.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/ConfigProxy.html">ConfigProxy</a></h2>
+				<h2><a href="symbols/Boxsplash.controller.StartupCommand.html">Boxsplash.controller.StartupCommand</a></h2>
+				A <code>MacroCommand</code> subclass
+used to satisfy or initialize dependency handling.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.controller.ViewPrepCommand.html">Boxsplash.controller.ViewPrepCommand</a></h2>
+				<code>SimpleCommand</code> subclass that is
+responsible for preparing the primary View.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.model.ConfigProxy.html">Boxsplash.model.ConfigProxy</a></h2>
 				The Configuration <code>Proxy</code> used to house
 and manipulate (if necessary) configuration data for the BoxSplash
 application.
@@ -259,78 +274,62 @@ application.
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/ControlPanel.html">ControlPanel</a></h2>
-				The View used to control the world space and
+				<h2><a href="symbols/Boxsplash.model.vo.BoxConfigVO.html">Boxsplash.model.vo.BoxConfigVO</a></h2>
+				The primary <i>Value Object</i> used to store and retrieve
+configuration data used in the application.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.view.components.Box.html">Boxsplash.view.components.Box</a></h2>
+				The particle used in the 3D animations.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></h2>
+				The <code>View</code> used to control the world space and
 load the various configuration settings available to the user.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/ControlPanelMediator.html">ControlPanelMediator</a></h2>
+				<h2><a href="symbols/Boxsplash.view.components.core.UIComponent.html">Boxsplash.view.components.core.UIComponent</a></h2>
+				A wrapper class whose primary goal is to encourage the addition
+of elements to the DOM in a top-down fashion.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.view.components.Shell.html">Boxsplash.view.components.Shell</a></h2>
+				Serves as the main application's <code>View</code>.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></h2>
+				<code>View</code> used as the space for the 3D box animations.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/Boxsplash.view.ControlPanelMediator.html">Boxsplash.view.ControlPanelMediator</a></h2>
 				The <code>Mediator</code> subclass attached to the
-<code>ControlPanel</code> View.
+<code>ControlPanel</code> <code>View</code>.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/ModelPrepCommand.html">ModelPrepCommand</a></h2>
-				<code>SimpleCommand</code> subclass that is
-responsible for preparing the data Model.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/RetrieveConfigOptionCommand.html">RetrieveConfigOptionCommand</a></h2>
-				<code>SimpleCommand</code> subclass
-used to retrieve configuration data from the <code>ConfigProxy</code>
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/Shell.html">Shell</a></h2>
-				Serves as the main application's View.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/ShellMediator.html">ShellMediator</a></h2>
+				<h2><a href="symbols/Boxsplash.view.ShellMediator.html">Boxsplash.view.ShellMediator</a></h2>
 				The <code>Mediator</code> subclass attached to
 the <code>Shell</code>.
 			</div>
 			<hr />
 			
 			<div>
-				<h2><a href="symbols/StartupCommand.html">StartupCommand</a></h2>
-				A <code>MacroCommand</code> subclass
-used to satisfy or initialize dependency handling.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/UIComponent.html">UIComponent</a></h2>
-				An ultra-light framework class used as a wrapper
-and psudo-extenstion of the MooTools Native Element
-implementation.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/ViewPrepCommand.html">ViewPrepCommand</a></h2>
-				<code>SimpleCommand</code> subclass that is
-responsible for preparing the primary View.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/WorldSpace.html">WorldSpace</a></h2>
-				View used as the space for the 3d box animations.
-			</div>
-			<hr />
-			
-			<div>
-				<h2><a href="symbols/WorldSpaceMediator.html">WorldSpaceMediator</a></h2>
+				<h2><a href="symbols/Boxsplash.view.WorldSpaceMediator.html">Boxsplash.view.WorldSpaceMediator</a></h2>
 				The <code>Mediator</code> subclass attached to the
-<code>WorldSpace</code> View.
+<code>WorldSpace</code> <code>View</code>.
 			</div>
 			<hr />
 			
@@ -338,7 +337,7 @@ responsible for preparing the primary View.
 		</div>
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.3.2 on Sun Feb 07 2010 09:23:12 GMT-0800 (PST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sun Dec 19 2010 17:47:14 GMT-0500 (EST)
 		</div>
 	</body>
 </html>

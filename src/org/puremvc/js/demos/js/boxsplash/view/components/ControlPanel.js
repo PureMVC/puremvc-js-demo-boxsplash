@@ -1,192 +1,200 @@
 /**
- * @misc
- * @class The View used to control the world space and
- * load the various configuration settings available to the user.
- *
- * @extends UIComponent
- * @author Justin Wilaby
+ * @lends Boxsplash.view.components.ControlPanel.prototype
  */
-var ControlPanel = function(){
-    /**
-     * @ignore
-     */
-    this.Extends = UIComponent;
+Ext.namespace('Boxsplash.view.components');
+Boxsplash.view.components.ControlPanel = Ext.extend(Boxsplash.view.components.core.UIComponent, {
+  /**
+   * @class The <code>View</code> used to control the world space and
+   * load the various configuration settings available to the user.
+   *
+   * @extends Boxsplash.view.components.core.UIComponent
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function() {
+    Boxsplash.view.components.ControlPanel.superclass.constructor.call(this, "control-panel", {events:{loadConfig:true, toggleStartStop:true}});
 
-    /**
-     * The label displaying the control panel title at the top.
-     * @type UIComponent
-     */
-    this.headerLabel = null;
+    // Overwrite listener handlers with methods bound to 'this'
+    this.button_clickHandler = this.button_clickHandler.createDelegate(this);
+    this.startStop_clickHandler = this.startStop_clickHandler.createDelegate(this);
+  },
 
-    /**
-     * The label displaying the title for the configuration buttons.
-     * @type UIComponent
-     */
-    this.availableConfigsLabel = null;
-    /**
-     * The score text control
-     * @type UIComponent
-     */
-    this.currentConfigLabel = null;
+  /**
+   * The label displaying the control panel title at the top.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   */
+  headerLabel: null,
 
-    /**
-     * The configuration buttons list
-     * @type Array
-     */
+  /**
+   * The label displaying the title for the configuration buttons.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   */
+  availableConfigsLabel: null,
+
+  /**
+   * The label displaying the the currently selected configuration.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   */
+  currentConfigLabel: null,
+
+  /**
+   * The configuration buttons list.
+   *
+   * @type Array
+   */
+  configButtons: [],
+
+  /**
+   * Button to start and stop the animation.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   */
+  stopStartButton: null,
+
+  /**
+   * Creates all children required to create the initial <code>View</code> state of this
+   * control and adds them to the DOM.
+   */
+  initializeChildren: function() {
+    this.headerLabel = new Boxsplash.view.components.core.UIComponent({tag: 'h1', id: 'header-label', html: 'Control Panel'});
+    this.addChild(this.headerLabel);
+
+    this.availableConfigsLabel = new Boxsplash.view.components.core.UIComponent({tag: 'p', id: 'available-configs-label', html: 'Available Configurations:'});
+    this.addChild(this.availableConfigsLabel);
+
+    this.currentConfigLabel = new Boxsplash.view.components.core.UIComponent({tag: 'p', id: 'current-config-label', html: 'Now Displaying:'});
+    this.addChild(this.currentConfigLabel);
+
+    this.stopStartButton = new Boxsplash.view.components.core.UIComponent({tag: 'button', id: 'startButton', html: 'Start'}, null, {position: 'absolute'});
+    this.addChild(this.stopStartButton);
+  },
+
+  /**
+   * Adds the 'click' listener to the startStop button after creation.
+   */
+  childrenInitialized: function() {
+    this.stopStartButton.element.addListener('click', this.startStop_clickHandler);
+  },
+
+  /**
+   * Called after <code>childrenInitialized()</code>.
+   * Override this method to perform any final processing
+   * before the child is considered initialized.
+   */
+  initializationComplete: function(){
+    Boxsplash.view.components.ControlPanel.superclass.initializationComplete.call(this);
+  },
+
+  /**
+   * Creates buttons based on the array of <code>BoxConfigVO</code>
+   * objects.  In this case, this function is called from the <code>ControlPanelMediator</code>'s
+   * <code>onRegister()</code> method and is based on the data contained
+   * within the <code>ConfigProxy</code>'s <code>data</code> property.
+   *
+   * @param {Boxsplash.model.vo.BoxConfigVO[]} value An array of BoxConfigVO objects to base the config buttons on.
+   *
+   * @see Boxsplash.model.vo.BoxConfigVO
+   * @see Boxsplash.view.ControlPanelMediator
+   * @see Boxsplash.model.ConfigProxy
+   */
+  setConfigurationButtons: function(value /* Array of BoxConfigVO */) {
+    var button = null;
+
+    // Remove the old buttons if we have them.
+    while (this.configButtons.length > 0) {
+      button = this.configButtons.pop();
+      Ext.removeNode(button.element);
+    }
     this.configButtons = [];
 
-    /**
-     * Button to start and stop the animation
-     * @type UIComponent
-     */
-    this.stopStartButton = null;
+    // Add the new ones based on the passed array.
+    var posY = 50;
+    var len = value.length;
+    for (i = 0; i < len; i++)	{
+      var boxConfigVO = value[i];
+      var buttonId = '_button' + (i + 1);
+      button = new Boxsplash.view.components.core.UIComponent({tag: 'button', id: buttonId, html: boxConfigVO.id}, null, {position:"absolute", top:posY, left:5, width:150});
 
-    /**
-     * @ignore
-     */
-    this.initialize = function()
-    {
-	this.parent('control-panel');
-	// Overwrite listener handlers with
-	// methods bound to 'this'
-	this.button_clickHandler = this.button_clickHandler.bindWithEvent(this);
-	this.startStop_clickHandler = this.startStop_clickHandler.bindWithEvent(this);
-    };
+      // Store the index location of the button so
+      // we can easily find which BoxConfig to load.
+      button.element.dom["__index"] = i;
 
-    /**
-     * Creates all children required to create the
-     * initial View state of this control and adds them to the DOM.
-     */
-    this.initializeChildren = function()
-    {
-	this.headerLabel = new UIComponent('h1',{id:"header-label", html:"Control Panel"});
-	this.addChild(this.headerLabel);
+      // Add the click handler.
+      button.element.addListener('click', this.button_clickHandler);
+    
+      // Retain it in our array for later reference.
+      this.configButtons.push(button);
 
-	this.availableConfigsLabel = new UIComponent('p', {id:"available-configs-label", html:"Available Configurations:"});
-	this.addChild(this.availableConfigsLabel);
+      this.addChild(button);
 
-	this.currentConfigLabel = new UIComponent('p', {id:"current-config-label", html:"Now Displaying:"});
-	this.addChild(this.currentConfigLabel);
+      // Position the button.
+      posY += button.element.getHeight();
+    }
 
-	this.stopStartButton = new UIComponent('button', {html:"Start", styles:{"position":"absolute"}});
-	this.addChild(this.stopStartButton);
-    };
+    // Reposition the current config label so that it's below the buttons.
+    Ext.DomHelper.applyStyles(this.currentConfigLabel.element.dom, {top: posY.toString() + "px"});
+    posY += this.currentConfigLabel.element.getHeight() + 10; // Padding
 
-    /**
-     * Adds the'click' listener to the startStop button after creation.
-     */
-    this.childrenInitialized = function()
-    {
-	this.stopStartButton.addEvent('click', this.startStop_clickHandler);
-    };
+    // Set the position of the start/stop button.
+    Ext.DomHelper.applyStyles(this.stopStartButton.element.dom, {top: (posY + 10).toString() + "px"});
+  },
 
-    /**
-     * Creates buttons based on the array of <code>BoxConfigVO</code>
-     * objects.  In this case, this function is called from the <code>ControlPanelMediator</code>'s
-     * <code>onRegister()</code> method and is based on the data contained
-     * within the <code>ConfigProxy</code>'s <code>data</code> property.
-     *
-     * @param {BoxConfigVO[]} value An array of BoxConfigVO objects to base the config buttons on
-     * @see BoxConfigVO
-     * @see ControlPanelMediator
-     * @see ConfigProxy
-     */
-    this.setConfigurationButtons = function(value /* Array */)
-    {
-	// Remove the old buttons if we have them
-	var i = 0;
-	var button = null;
-	if (this.configButtons.length)
-	{
-	    i = this.configButtons.length;
-	    while(i--)
-	    {
-		button = this.configButtons[i];
-		button.removeEvent('click', this.button_clickHandler);
-		button.dispose();
-	    }
-	    this.configButtons = [];
-	}
-	// Add the new ones based on the passed array
-	var posY = 50;
-	var len = value.length;
-	for (i = 0; i < len; i++)
-	{
-	    var boxConfigVO = value[i];
-	    button = new UIComponent('button', {html:boxConfigVO.id, styles:{position:"absolute", top:posY, left:5, width:150}});
-	    // Store the index location of the button so
-	    // we can easily find which BoxConfig to load.
-	    button.store("index", i);
-	    // Add the click handler.
-	    button.addEvent('click', this.button_clickHandler);
-	    // Add it to the DOM.
-	    this.addChild(button);
-	    // Retain it in our array for later reference.
-	    this.configButtons.push(button);
-	    // Position the button.
-	    posY += button.getSize().y;
-	}
-	// Reposition the current config label so
-	// that its below the buttons.
-	this.currentConfigLabel.setStyle("top", posY.toString() + "px");
-	posY += this.currentConfigLabel.getSize().y + 10; // Padding
-	// Set the position of the start/stop button
-	this.stopStartButton.setStyle("top", (posY + 10).toString() + "px");
-    };
+  /**
+   * Sets the label of the configuration 'p' tag. This function
+   * is called by the <code>ControlPanelMediator</code>
+   * in response to the <code>ConfigProxy.CONFIG_OPTION_RETRIEVED</code>
+   * <code>Notification</code>.
+   *
+   * @param {String} value the string to append to the label's text.
+   *
+   * @see Boxsplash.view.ControlPanelMediator
+   * @see Boxsplash.model.ConfigProxy
+   */
+  setConfigurationLabel: function(value /* String */) {
+    Ext.fly('current-config-label').update("Now Displaying: " + value);
+  },
 
-    /**
-     * Sets the label of the configuration 'p' tag. This function
-     * is called by the <code>ControlPanelMediator</code>
-     * in response to the <code>ConfigProxy.CONFIG_OPTION_RETRIEVED</code>
-     * <code>Notification</code>.
-     *
-     * @param {String} value the string to append to the label's text
-     * @see ControlPanelMediator
-     * @see ConfigProxy
-     */
-    this.setConfigurationLabel = function(value /* String */)
-    {
-	 this.currentConfigLabel.set("html", "Now Displaying: "+value);
-    };
+  /**
+   * Sets the appropriate label for the startStop button
+   * based on the current state of the animation.
+   *
+   * @param {Boolean} inTween indicates whether or not the animation is running.
+   */
+  animationStateChanged: function(inTween) {
+    var wrapper = Ext.fly('startButton');
+    if (inTween) {
+      wrapper.update("Stop");
+    }
+    else {
+      wrapper.update("Start");
+    }
+  },
 
-    /**
-     * Sets the appropriate label for the startStop button
-     * based on the current state of the animation.
-     *
-     * @param {Boolean} inTween indicates whether or not the animation is running.
-     */
-    this.animationStateChanged = function(inTween)
-    {
-	if (inTween)
-	    this.stopStartButton.set("html", "Stop");
-	else
-	    this.stopStartButton.set("html", "Start");
-    };
+  /**
+   * Event handler for handling clicks from the user on configuration buttons.
+   *
+   * @param {Event} event the MouseEvent resulting from a click by the user.
+   */
+  button_clickHandler: function(event, target) {
+    var buttonElement = target;
+    var index = buttonElement["__index"];
 
-    //------------------------------------------
-    // Event Handlers
+    // Dispatch our custom event to be picked up by the ControlPanelMediator.
+    this.fireEvent("loadConfig", index);
+  },
 
-    /**
-     * Handles clicks from the user on conguration buttons
-     *
-     * @param {Event} event the MouseEvent resulting from a click by the user
-     */
-    this.button_clickHandler = function(event)
-    {
-	var buttonElement = event.target;
-	var index = buttonElement.retrieve("index");
-	// Dispatch our custom event to be
-	// picked up by the ControlPanelMediator
-	this.fireEvent("loadConfig", index);
-    };
-
-    /**
-     * Handles clicks from the startStop button
-     * @param {Event} event the MouseEvent resulting from a click by the user.
-     */
-    this.startStop_clickHandler = function(event)
-    {
-	this.fireEvent("toggleStartStop");
-    };
-};
-ControlPanel = new Class(new ControlPanel());
+  /**
+   * Event handler for handling clicks from the startStop button.
+   * 
+   * @param {Event} event the MouseEvent resulting from a click by the user.
+   */
+  startStop_clickHandler: function(event, target) {
+    this.fireEvent("toggleStartStop");
+  }
+});

@@ -1,31 +1,35 @@
 /**
- * @misc
- * @class A <code>MacroCommand</code> subclass
- * used to satisfy or initialize dependency handling.<p>
- * in this case, our <code>ShellMediator</code>
- * needs to be registered with the <code>View</code>
- * in order to begin communication with the system.</p>
- *
- * @extends MacroCommand
- * @author Justin Wilaby
+ * @lends Boxsplash.controller.StartupCommand.prototype
  */
-var StartupCommand = function(){
+Ext.namespace('Boxsplash.controller');
+Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, {
+  /**
+   * @class A <code>MacroCommand</code> subclass
+   * used to satisfy or initialize dependency handling.<p>
+   * In this case, our <code>ShellMediator</code>
+   * needs to be registered with the <code>View</code>
+   * in order to begin communication with the system.</p>
+   *
+   * @extends Puremvc.patterns.MacroCommand
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function() {
+    Boxsplash.controller.StartupCommand.superclass.constructor.call(this);
+  },
 
-    /**
-     * @ignore
-     */
-    this.Extends = MacroCommand;
-
-    /**
-     * Overridden to populate the <code>MacroCommand</code>'s
-     * <code>subCommands</code> array
-     * @see ModelPrepCommand
-     * @see ViewPrepCommand
-     */
-    this.initializeMacroCommand = function()
-    {
-	this.addSubCommand(ModelPrepCommand);
-	this.addSubCommand(ViewPrepCommand);
-    };
-};
-StartupCommand = new Class(new StartupCommand());
+  /**
+   * Overridden to populate the <code>MacroCommand</code>'s
+   * <code>subCommands</code> array.
+   *
+   * @see Boxsplash.controller.ModelPrepCommand
+   * @see Boxsplash.controller.ViewPrepCommand
+   */
+  initializeMacroCommand: function() {
+    this.addSubCommand(Boxsplash.controller.ModelPrepCommand);
+    this.addSubCommand(Boxsplash.controller.ViewPrepCommand);
+  }
+});

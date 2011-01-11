@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - _global_</title>
+		<title>JsDoc Reference - Boxsplash.model.ConfigProxy</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -230,37 +230,256 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Built-In Namespace _global_
+				Class Boxsplash.model.ConfigProxy
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					Puremvc.patterns.Proxy.<br />
 				
 			
+				The Configuration <code>Proxy</code> used to house
+and manipulate (if necessary) configuration data for the BoxSplash
+application.  The data takes its form as <code>BoxConfigVO</code>
+(Value Objects) containing properties that define the state of the
+application.
+<p>In an MVC pattern, the <code>Proxy</code> acts upon notifications from the system
+or calls to public methods from either <code>SimpleCommand</code>
+subclasses or <code>Mediator</code> subclasses to retrieve, store, or
+manipulate data whether the data's physical location happens to be
+remote or local.</p>
 				
 				
+					<br /><i>Defined in: </i> <a href="../symbols/src/i__workspace_Javascript_BoxSplash_1_0_bin_js_boxsplash_ext-debug.js.html">boxsplash_ext-debug.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Boxsplash.model.ConfigProxy.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/Boxsplash.model.ConfigProxy.html#constructor">Boxsplash.model.ConfigProxy</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Boxsplash.model.ConfigProxy.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Boxsplash.model.ConfigProxy.<b><a href="../symbols/Boxsplash.model.ConfigProxy.html#.CONFIG_OPTION_RETRIEVED">CONFIG_OPTION_RETRIEVED</a></b>
+								</div>
+								<div class="description">Constant used to name the <i>outbound</i> notification
+resulting from a call to the <code>retrieveConfigOption</code> method.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Boxsplash.model.ConfigProxy.<b><a href="../symbols/Boxsplash.model.ConfigProxy.html#.NAME">NAME</a></b>
+								</div>
+								<div class="description">Constant defining the unique name of this <code>Proxy</code> subclass.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Boxsplash.model.ConfigProxy.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Boxsplash.model.ConfigProxy.html#retrieveConfigOption">retrieveConfigOption</a></b>(optionNum)
+								</div>
+								<div class="description">Retrieves the specified configuration option.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
 			
 <!-- ============================== events summary ======================== -->
 			
 
 <!-- ============================== constructor details ==================== -->		
 			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>Boxsplash.model.ConfigProxy</b>()
+				</div>
+				
+				<div class="description">
+					
+					<br /><i>Author: </i>Justin Wilaby, Tony DeFusco.
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name=".CONFIG_OPTION_RETRIEVED"> </a>
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">Boxsplash.model.ConfigProxy.</span><b>CONFIG_OPTION_RETRIEVED</b>
+					
+					</div>
+					<div class="description">
+						Constant used to name the <i>outbound</i> notification
+resulting from a call to the <code>retrieveConfigOption</code> method.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".NAME"> </a>
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">Boxsplash.model.ConfigProxy.</span><b>NAME</b>
+					
+					</div>
+					<div class="description">
+						Constant defining the unique name of this <code>Proxy</code> subclass.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="retrieveConfigOption"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>retrieveConfigOption</b>(optionNum)
+					
+					</div>
+					<div class="description">
+						Retrieves the specified configuration option.  In this case, by index.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{int}</span> <b>optionNum</b>
+									
+								</dt>
+								<dd>The index of the <code>BoxConfigVO</code>
+stored in the <code>data</code> Object.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
 			
 			
 <!-- ============================== event details ========================= -->		
@@ -273,7 +492,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 19 2010 17:47:08 GMT-0500 (EST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 19 2010 17:47:12 GMT-0500 (EST)
 		</div>
 	</body>
 </html>

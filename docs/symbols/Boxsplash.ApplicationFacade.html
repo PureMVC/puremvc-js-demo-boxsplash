@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - ApplicationFacade</title>
+		<title>JsDoc Reference - Boxsplash.ApplicationFacade</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -191,35 +191,35 @@ ul.inheritsList
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/ApplicationFacade.html">ApplicationFacade</a></li>
+	<li><a href="../symbols/Boxsplash.ApplicationFacade.html">Boxsplash.ApplicationFacade</a></li>
 	
-	<li><a href="../symbols/Box.html">Box</a></li>
+	<li><a href="../symbols/Boxsplash.controller.ModelPrepCommand.html">Boxsplash.controller.ModelPrepCommand</a></li>
 	
-	<li><a href="../symbols/BoxConfigVO.html">BoxConfigVO</a></li>
+	<li><a href="../symbols/Boxsplash.controller.RetrieveConfigOptionCommand.html">Boxsplash.controller.RetrieveConfigOptionCommand</a></li>
 	
-	<li><a href="../symbols/ConfigProxy.html">ConfigProxy</a></li>
+	<li><a href="../symbols/Boxsplash.controller.StartupCommand.html">Boxsplash.controller.StartupCommand</a></li>
 	
-	<li><a href="../symbols/ControlPanel.html">ControlPanel</a></li>
+	<li><a href="../symbols/Boxsplash.controller.ViewPrepCommand.html">Boxsplash.controller.ViewPrepCommand</a></li>
 	
-	<li><a href="../symbols/ControlPanelMediator.html">ControlPanelMediator</a></li>
+	<li><a href="../symbols/Boxsplash.model.ConfigProxy.html">Boxsplash.model.ConfigProxy</a></li>
 	
-	<li><a href="../symbols/ModelPrepCommand.html">ModelPrepCommand</a></li>
+	<li><a href="../symbols/Boxsplash.model.vo.BoxConfigVO.html">Boxsplash.model.vo.BoxConfigVO</a></li>
 	
-	<li><a href="../symbols/RetrieveConfigOptionCommand.html">RetrieveConfigOptionCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.Box.html">Boxsplash.view.components.Box</a></li>
 	
-	<li><a href="../symbols/Shell.html">Shell</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></li>
 	
-	<li><a href="../symbols/ShellMediator.html">ShellMediator</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.core.UIComponent.html">Boxsplash.view.components.core.UIComponent</a></li>
 	
-	<li><a href="../symbols/StartupCommand.html">StartupCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.Shell.html">Boxsplash.view.components.Shell</a></li>
 	
-	<li><a href="../symbols/UIComponent.html">UIComponent</a></li>
+	<li><a href="../symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></li>
 	
-	<li><a href="../symbols/ViewPrepCommand.html">ViewPrepCommand</a></li>
+	<li><a href="../symbols/Boxsplash.view.ControlPanelMediator.html">Boxsplash.view.ControlPanelMediator</a></li>
 	
-	<li><a href="../symbols/WorldSpace.html">WorldSpace</a></li>
+	<li><a href="../symbols/Boxsplash.view.ShellMediator.html">Boxsplash.view.ShellMediator</a></li>
 	
-	<li><a href="../symbols/WorldSpaceMediator.html">WorldSpaceMediator</a></li>
+	<li><a href="../symbols/Boxsplash.view.WorldSpaceMediator.html">Boxsplash.view.WorldSpaceMediator</a></li>
 	
 </ul>
 <hr />
@@ -230,43 +230,46 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class ApplicationFacade
+				Class Boxsplash.ApplicationFacade
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					Facade.<br />
+					Puremvc.patterns.Facade.<br />
 				
 			
-				<i>concrete</i> Facade implementation used to
-facilitate the startup process of the MV&C.  This is
-the 'hub' that accesses and communicates with the Proxies,
-Mediators and Commands that do the work in your application.
-<p>
-Excerpts from "Implementation Idioms and Best Practices" by Cliff Hall:
-"...By composition then, the Façade implements and exposes the
-features of the Model, View and Controller; aggregating their
-functionality and shielding the developer from direct interaction
-with the Core actors of the framework..."</p>
-<p> "By convention, it is named ‘ApplicationFacade’, but you
-may call it whatever you like".</p>
-<p> "Once the application’s View
-hierarchy has been built, the PureMVC apparatus is
-started and the Model and View regions are prepared for use."
-For more information on creating the  concrete Facade, see
-page 11 in "Implementation Idioms and Best Practices" by Cliff Hall
-</p>
+				<p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
+       process of the MVC. This is the 'hub' that accesses and communicates
+       with the <code>Proxy</code>s, <code>Mediator</code>s and <code>Command</code>s that
+       do the work in your application.</p>
+       <p>
+       Excerpts from "Implementation Idioms and Best Practices" by Cliff
+       Hall: "...By composition then, the Facade implements and exposes the
+       features of the Model, View and Controller; aggregating their
+       functionality and shielding the developer from direct interaction with
+       the Core actors of the framework..."
+       </p>
+       <p>
+       "By convention, it is named <i>ApplicationFacade</i>, but you may call
+       it whatever you like".
+       </p>
+       <p>
+       "Once the application's View hierarchy has been built, the PureMVC
+       apparatus is started and the Model and View regions are prepared for
+       use." For more information on creating the concrete Facade, see page
+       11 in "Implementation Idioms and Best Practices" by Cliff Hall.
+       </p>
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/boxsplash.js.html">boxsplash.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/i__workspace_Javascript_BoxSplash_1_0_bin_js_boxsplash_ext-debug.js.html">boxsplash_ext-debug.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class ApplicationFacade.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Boxsplash.ApplicationFacade.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -279,7 +282,7 @@ page 11 in "Implementation Idioms and Best Practices" by Cliff Hall
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/ApplicationFacade.html#constructor">ApplicationFacade</a></b>()
+								<b><a href="../symbols/Boxsplash.ApplicationFacade.html#constructor">Boxsplash.ApplicationFacade</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -292,7 +295,7 @@ page 11 in "Implementation Idioms and Best Practices" by Cliff Hall
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class ApplicationFacade.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Boxsplash.ApplicationFacade.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -303,57 +306,46 @@ page 11 in "Implementation Idioms and Best Practices" by Cliff Hall
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								ApplicationFacade.<b><a href="../symbols/ApplicationFacade.html#.ANIMATION_STATE_CHANGED">ANIMATION_STATE_CHANGED</a></b>
+								Boxsplash.ApplicationFacade.<b><a href="../symbols/Boxsplash.ApplicationFacade.html#.ANIMATION_STATE_CHANGED">ANIMATION_STATE_CHANGED</a></b>
 								</div>
-								<div class="description">Constant used to register and identify the notification that
-is sent when the animation state of the <code>WorldSpace</code>
-has changed</div>
+								<div class="description">Constant used to register and identify the notification that is sent when
+the animation state of the <code>WorldSpace</code> has changed</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/ApplicationFacade.html#Extends">Extends</a></b>
+								Boxsplash.ApplicationFacade.<b><a href="../symbols/Boxsplash.ApplicationFacade.html#.RETRIEVE_CONFIG_OPTION">RETRIEVE_CONFIG_OPTION</a></b>
 								</div>
-								<div class="description">Required by MooTools for inheritance.</div>
+								<div class="description">Constant used to register and identify the notification that should execute
+the <code>RetrieveConfigOptionCommand</code></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								ApplicationFacade.<b><a href="../symbols/ApplicationFacade.html#.RETRIEVE_CONFIG_OPTION">RETRIEVE_CONFIG_OPTION</a></b>
+								Boxsplash.ApplicationFacade.<b><a href="../symbols/Boxsplash.ApplicationFacade.html#.STARTUP">STARTUP</a></b>
 								</div>
-								<div class="description">Constant used to register and identify the notification that should 
-execute the <code>RetrieveConfigOptionCommand</code></div>
+								<div class="description">Constant used to register and identify the notification that should execute
+the <code>StartupCommand</code></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								ApplicationFacade.<b><a href="../symbols/ApplicationFacade.html#.STARTUP">STARTUP</a></b>
+								Boxsplash.ApplicationFacade.<b><a href="../symbols/Boxsplash.ApplicationFacade.html#.TOGGLE_START_STOP">TOGGLE_START_STOP</a></b>
 								</div>
-								<div class="description">Constant used to register and identify the notification that should
-execute the <code>StartupCommand</code></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								ApplicationFacade.<b><a href="../symbols/ApplicationFacade.html#.TOGGLE_START_STOP">TOGGLE_START_STOP</a></b>
-								</div>
-								<div class="description">Constant used to register and identify the notification that should 
-toggle the animation between start and stop.</div>
+								<div class="description">Constant used to register and identify the notification that should toggle
+the animation between start and stop.</div>
 							</td>
 						</tr>
 					
@@ -368,7 +360,7 @@ toggle the animation between start and stop.</div>
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class ApplicationFacade.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Boxsplash.ApplicationFacade.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -381,29 +373,27 @@ toggle the animation between start and stop.</div>
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">ApplicationFacade.<b><a href="../symbols/ApplicationFacade.html#.getInstance">getInstance</a></b>()
+								<div class="fixedFont">Boxsplash.ApplicationFacade.<b><a href="../symbols/Boxsplash.ApplicationFacade.html#.getInstance">getInstance</a></b>()
 								</div>
-								<div class="description">Singleton implementation for the <code>ApplicationFacade</code>
-Your Singleton implementation is up to you.</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ApplicationFacade.html#initializeController">initializeController</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/Boxsplash.ApplicationFacade.html#initializeController">initializeController</a></b>()
 								</div>
-								<div class="description">The <code>Model</code> <code>View</code> and
-<code>Controller</code> are initialized in a deliberate
-order to ensure internal dependencies are satisfied before
-operations are performed.</div>
+								<div class="description">The <code>Model</code>, <code>View</code> and <code>Controller</code>
+are initialized in a deliberate order to ensure internal dependencies are
+satisfied before operations are performed.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/ApplicationFacade.html#startup">startup</a></b>(viewComponent)
+								<div class="fixedFont"><b><a href="../symbols/Boxsplash.ApplicationFacade.html#startup">startup</a></b>(viewComponent)
 								</div>
 								<div class="description">Method used to start the system.</div>
 							</td>
@@ -426,12 +416,12 @@ operations are performed.</div>
 				</div>
 				
 				<div class="fixedFont">
-						<b>ApplicationFacade</b>()
+						<b>Boxsplash.ApplicationFacade</b>()
 				</div>
 				
 				<div class="description">
 					
-					<br /><i>Author: </i>Justin Wilaby.
+					<br /><i>Author: </i>Justin Wilaby, Tony DeFusco.
 				</div>
 				
 				
@@ -455,16 +445,15 @@ operations are performed.</div>
 				</div>
 				
 					<a name=".ANIMATION_STATE_CHANGED"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
 					<span class="light">{String}</span>
-					<span class="light">ApplicationFacade.</span><b>ANIMATION_STATE_CHANGED</b>
+					<span class="light">Boxsplash.ApplicationFacade.</span><b>ANIMATION_STATE_CHANGED</b>
 					
 					</div>
 					<div class="description">
-						Constant used to register and identify the notification that
-is sent when the animation state of the <code>WorldSpace</code>
-has changed
+						Constant used to register and identify the notification that is sent when
+the animation state of the <code>WorldSpace</code> has changed
 						
 						
 					</div>
@@ -477,9 +466,9 @@ has changed
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-							<dd><a href="../symbols/ControlPanel.html">ControlPanel</a></dd>
+							<dd><a href="../symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></dd>
 							
-							<dd><a href="../symbols/WorldSpace.html">WorldSpace</a></dd>
+							<dd><a href="../symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></dd>
 							
 							</dl>
 						
@@ -487,38 +476,16 @@ has changed
 
 					<hr />
 				
-					<a name="Extends"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{Class}</span>
-					<b>Extends</b>
-					
-					</div>
-					<div class="description">
-						Required by MooTools for inheritance.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
 					<a name=".RETRIEVE_CONFIG_OPTION"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
 					<span class="light">{String}</span>
-					<span class="light">ApplicationFacade.</span><b>RETRIEVE_CONFIG_OPTION</b>
+					<span class="light">Boxsplash.ApplicationFacade.</span><b>RETRIEVE_CONFIG_OPTION</b>
 					
 					</div>
 					<div class="description">
-						Constant used to register and identify the notification that should 
-execute the <code>RetrieveConfigOptionCommand</code>
+						Constant used to register and identify the notification that should execute
+the <code>RetrieveConfigOptionCommand</code>
 						
 						
 					</div>
@@ -531,7 +498,7 @@ execute the <code>RetrieveConfigOptionCommand</code>
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-							<dd><a href="../symbols/RetrieveConfigOptionCommand.html">RetrieveConfigOptionCommand</a></dd>
+							<dd><a href="../symbols/Boxsplash.controller.RetrieveConfigOptionCommand.html">Boxsplash.controller.RetrieveConfigOptionCommand</a></dd>
 							
 							</dl>
 						
@@ -540,15 +507,15 @@ execute the <code>RetrieveConfigOptionCommand</code>
 					<hr />
 				
 					<a name=".STARTUP"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
 					<span class="light">{String}</span>
-					<span class="light">ApplicationFacade.</span><b>STARTUP</b>
+					<span class="light">Boxsplash.ApplicationFacade.</span><b>STARTUP</b>
 					
 					</div>
 					<div class="description">
-						Constant used to register and identify the notification that should
-execute the <code>StartupCommand</code>
+						Constant used to register and identify the notification that should execute
+the <code>StartupCommand</code>
 						
 						
 					</div>
@@ -561,7 +528,7 @@ execute the <code>StartupCommand</code>
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-							<dd><a href="../symbols/StartupCommand.html">StartupCommand</a></dd>
+							<dd><a href="../symbols/Boxsplash.controller.StartupCommand.html">Boxsplash.controller.StartupCommand</a></dd>
 							
 							</dl>
 						
@@ -570,15 +537,15 @@ execute the <code>StartupCommand</code>
 					<hr />
 				
 					<a name=".TOGGLE_START_STOP"> </a>
-					<div class="fixedFont">&lt;static&gt; 
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
 					<span class="light">{String}</span>
-					<span class="light">ApplicationFacade.</span><b>TOGGLE_START_STOP</b>
+					<span class="light">Boxsplash.ApplicationFacade.</span><b>TOGGLE_START_STOP</b>
 					
 					</div>
 					<div class="description">
-						Constant used to register and identify the notification that should 
-toggle the animation between start and stop.
+						Constant used to register and identify the notification that should toggle
+the animation between start and stop.
 						
 						
 					</div>
@@ -591,9 +558,9 @@ toggle the animation between start and stop.
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-							<dd><a href="../symbols/ControlPanel.html">ControlPanel</a></dd>
+							<dd><a href="../symbols/Boxsplash.view.components.ControlPanel.html">Boxsplash.view.components.ControlPanel</a></dd>
 							
-							<dd><a href="../symbols/WorldSpace.html">WorldSpace</a></dd>
+							<dd><a href="../symbols/Boxsplash.view.components.WorldSpace.html">Boxsplash.view.components.WorldSpace</a></dd>
 							
 							</dl>
 						
@@ -612,14 +579,12 @@ toggle the animation between start and stop.
 					<a name=".getInstance"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{<a href="../symbols/ApplicationFacade.html">ApplicationFacade</a>}</span>
-					<span class="light">ApplicationFacade.</span><b>getInstance</b>()
+					
+					<span class="light">Boxsplash.ApplicationFacade.</span><b>getInstance</b>()
 					
 					</div>
 					<div class="description">
-						Singleton implementation for the <code>ApplicationFacade</code>
-Your Singleton implementation is up to you.  This provides an example
-that is compatable with JSDoc and most editors' code assistance.
+						
 						
 						
 					</div>
@@ -630,14 +595,6 @@ that is compatable with JSDoc and most editors' code assistance.
 						
 						
 						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{<a href="../symbols/ApplicationFacade.html">ApplicationFacade</a>}</span> the <code>Facade</code> subclass instance
-used throughout the application.</dd>
-							
-							</dl>
 						
 						
 						
@@ -652,15 +609,16 @@ used throughout the application.</dd>
 					
 					</div>
 					<div class="description">
-						The <code>Model</code> <code>View</code> and
-<code>Controller</code> are initialized in a deliberate
-order to ensure internal dependencies are satisfied before
-operations are performed.<p>
-<code>initializeController()</code> should be overridden
-for the specific purpose of registering your commands. Any attempt to
-register <code>Mediator</code>s here will result in an error.
-being thrown because the View has not yet been initialized.</p>
-<p>calling <code>this.parent()</code> is also required.
+						The <code>Model</code>, <code>View</code> and <code>Controller</code>
+are initialized in a deliberate order to ensure internal dependencies are
+satisfied before operations are performed.
+<p>
+<code>initializeController()</code> should be overridden for the specific
+purpose of registering your commands. Any attempt to register
+<code>Mediator</code>s here will result in an error being thrown
+because the <code>View</code> has not yet been initialized.
+</p>
+<p>Calling <code>this.parent()</code> is also required.
 						
 						
 					</div>
@@ -697,10 +655,10 @@ being thrown because the View has not yet been initialized.</p>
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/Shell.html">Shell</a>}</span> <b>viewComponent</b>
+									<span class="light fixedFont">{<a href="../symbols/Boxsplash.view.components.Shell.html">Boxsplash.view.components.Shell</a>}</span> <b>viewComponent</b>
 									
 								</dt>
-								<dd>the Shell instance used as the vew.</dd>
+								<dd>the <code>Shell</code> instance used as the <code>View</code>.</dd>
 							
 							</dl>
 						
@@ -725,7 +683,7 @@ being thrown because the View has not yet been initialized.</p>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.2 on Sun Feb 07 2010 09:23:12 GMT-0800 (PST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Dec 19 2010 17:47:08 GMT-0500 (EST)
 		</div>
 	</body>
 </html>
