@@ -114,89 +114,16 @@ Ext.apply(Boxsplash.ApplicationFacade, {
   ANIMATION_STATE_CHANGED: "animationStateChanged",
 
   /**
-   * @private
    * @memberof Boxsplash.ApplicationFacade
-   */
-  _instance: null
-});
-
-Ext.apply(Boxsplash.ApplicationFacade, {
-  /**
-   * @memberof Boxsplash.ApplicationFacade
+   *
+   * @return {Boxsplash.ApplicationFacade} the <code>Facade</code> subclass instance
+   * used throughout the application.
    */
   getInstance: function() {
-    if (Boxsplash.ApplicationFacade._instance === null) {
-      Boxsplash.ApplicationFacade._instance = new Boxsplash.ApplicationFacade();
+    if (Puremvc.patterns.Facade._instance === null) {
+      Puremvc.patterns.Facade._instance = new Boxsplash.ApplicationFacade();
     }
-    return Boxsplash.ApplicationFacade._instance;
-  }
-});
-/**
- * @lends Boxsplash.controller.StartupCommand.prototype
- */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, {
-  /**
-   * @class A <code>MacroCommand</code> subclass
-   * used to satisfy or initialize dependency handling.<p>
-   * In this case, our <code>ShellMediator</code>
-   * needs to be registered with the <code>View</code>
-   * in order to begin communication with the system.</p>
-   *
-   * @extends Puremvc.patterns.MacroCommand
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function() {
-    Boxsplash.controller.StartupCommand.superclass.constructor.call(this);
-  },
-
-  /**
-   * Overridden to populate the <code>MacroCommand</code>'s
-   * <code>subCommands</code> array.
-   *
-   * @see Boxsplash.controller.ModelPrepCommand
-   * @see Boxsplash.controller.ViewPrepCommand
-   */
-  initializeMacroCommand: function() {
-    this.addSubCommand(Boxsplash.controller.ModelPrepCommand);
-    this.addSubCommand(Boxsplash.controller.ViewPrepCommand);
-  }
-});
-/**
- * @lends Boxsplash.controller.ModelPrepCommand.prototype
- */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.ModelPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
-  /**
-   * @class <code>SimpleCommand</code> subclass that is
-   * responsible for preparing the data <code>Model</code>.
-   * This is where all <code>Proxy</code> subclasses are
-   * registered with the <code>Model</code>.
-   *
-   * @extends Puremvc.patterns.SimpleCommand
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function() {
-    Boxsplash.controller.ModelPrepCommand.superclass.constructor.call(this);
-  },
-
-  /**
-   * Registers the <code>ConfigProxy</code> with the <code>Model</code>.
-   *
-   * @param {Puremvc.patterns.Notification} notification the <code>Notification</code> to handle.
-   *
-   * @see Boxsplash.model.ConfigProxy
-   */
-  execute: function(notification /* Notification */) {
-    this.facade.registerProxy(new Boxsplash.model.ConfigProxy());
+    return Puremvc.patterns.Facade._instance;
   }
 });
 /**
@@ -236,6 +163,41 @@ Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.S
     configProxy.retrieveConfigOption(configOptionNum);
   }
 });
+
+/**
+ * @lends Boxsplash.controller.ModelPrepCommand.prototype
+ */
+Ext.namespace('Boxsplash.controller');
+Boxsplash.controller.ModelPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+  /**
+   * @class <code>SimpleCommand</code> subclass that is
+   * responsible for preparing the data <code>Model</code>.
+   * This is where all <code>Proxy</code> subclasses are
+   * registered with the <code>Model</code>.
+   *
+   * @extends Puremvc.patterns.SimpleCommand
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function() {
+    Boxsplash.controller.ModelPrepCommand.superclass.constructor.call(this);
+  },
+
+  /**
+   * Registers the <code>ConfigProxy</code> with the <code>Model</code>.
+   *
+   * @param {Puremvc.patterns.Notification} notification the <code>Notification</code> to handle.
+   *
+   * @see Boxsplash.model.ConfigProxy
+   */
+  execute: function(notification /* Notification */) {
+    this.facade.registerProxy(new Boxsplash.model.ConfigProxy());
+  }
+});
+
 /**
  * @lends Boxsplash.controller.ViewPrepCommand.prototype
  */
@@ -278,6 +240,61 @@ Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand
     this.facade.registerMediator(new Boxsplash.view.ShellMediator(shell));
   }
 });
+
+/**
+ * @lends Boxsplash.controller.StartupCommand.prototype
+ */
+Ext.namespace('Boxsplash.controller');
+Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, {
+  /**
+   * @class A <code>MacroCommand</code> subclass
+   * used to satisfy or initialize dependency handling.<p>
+   * In this case, our <code>ShellMediator</code>
+   * needs to be registered with the <code>View</code>
+   * in order to begin communication with the system.</p>
+   *
+   * @extends Puremvc.patterns.MacroCommand
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function() {
+    Boxsplash.controller.StartupCommand.superclass.constructor.call(this);
+  },
+
+  /**
+   * Overridden to populate the <code>MacroCommand</code>'s
+   * <code>subCommands</code> array.
+   *
+   * @see Boxsplash.controller.ModelPrepCommand
+   * @see Boxsplash.controller.ViewPrepCommand
+   */
+  initializeMacroCommand: function() {
+    this.addSubCommand(Boxsplash.controller.ModelPrepCommand);
+    this.addSubCommand(Boxsplash.controller.ViewPrepCommand);
+  }
+});
+
+Ext.namespace('Boxsplash.model.vo');
+/**
+ * @class The primary <i>Value Object</i> used to store and retrieve
+ * configuration data used in the application.
+ *
+ * @param {String} id the identifier and label of the configuration object.
+ * @param {int} numBoxes the number of <code>Box</code> object to display.
+ * @param {Number} boxSize width and height of each box.
+ * @param {Number} focalLength the distance from the lens to the focal point.
+ * @param {String} color the color of each <code>Box</code> instance.
+ */
+Boxsplash.model.vo.BoxConfigVO = function(id /* String */, numBoxes /* int */, boxSize /* Number */,  focalLength /* Number */, color /* String */){
+    this.id = id;
+    this.numBoxes = numBoxes;
+    this.boxSize = boxSize;
+    this.focalLength = focalLength;
+    this.color = color;
+};
 /**
  * @lends Boxsplash.model.ConfigProxy.prototype
  */
@@ -341,350 +358,6 @@ Ext.apply(Boxsplash.model.ConfigProxy, {
    * @memberof Boxsplash.model.ConfigProxy
    */
   CONFIG_OPTION_RETRIEVED: "configOptionRetrieved"
-});
-Ext.namespace('Boxsplash.model.vo');
-/**
- * @class The primary <i>Value Object</i> used to store and retrieve
- * configuration data used in the application.
- *
- * @param {String} id the identifier and label of the configuration object.
- * @param {int} numBoxes the number of <code>Box</code> object to display.
- * @param {Number} boxSize width and height of each box.
- * @param {Number} focalLength the distance from the lens to the focal point.
- * @param {String} color the color of each <code>Box</code> instance.
- */
-Boxsplash.model.vo.BoxConfigVO = function(id /* String */, numBoxes /* int */, boxSize /* Number */,  focalLength /* Number */, color /* String */){
-    this.id = id;
-    this.numBoxes = numBoxes;
-    this.boxSize = boxSize;
-    this.focalLength = focalLength;
-    this.color = color;
-};
-/**
- * @lends Boxsplash.view.ControlPanelMediator.prototype
- */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
-  /**
-   * @class The <code>Mediator</code> subclass attached to the
-   * <code>ControlPanel</code> <code>View</code>. Its primary responsibilities here
-   * are to listen for and notify the system of user interactions that change
-   * the state of the application including that of other <code>View<code>s; specifically
-   * start/stop and config button clicks.  This <code>Mediator</code> is
-   * registered by the <code>ShellMediator</code>'s constructor.
-   *
-   * @extends Puremvc.patterns.Mediator
-   *
-   * @param {Boxsplash.view.components.ControlPanel} viewComponent the <code>ControlPanel</code> instance
-   * assigned to this mediator.
-   *
-   * @see Boxsplash.view.components.ControlPanel
-   * @see Boxsplash.view.ShellMediator
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function(viewComponent /* ControlPanel */) {
-    Boxsplash.view.ControlPanelMediator.superclass.constructor.call(this, Boxsplash.view.ControlPanelMediator.NAME, viewComponent);
-    this.controlPanel = this.getViewComponent();
-    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
-
-    // Replace listener handlers with methods bound to 'this'
-    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
-    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
-  },
-
-  /**
-   * A named shortcut to the <code>ControlPanel</code> instance.  This
-   * prevents us from having to reference the more
-   * ambiguous <code>viewComponent</code> property.
-   * @type Boxsplash.view.components.ControlPanel
-   */
-  controlPanel: null,
-
-  /**
-   * The <code>ConfigProxy</code> instance registered to the
-   * <code>ApplicationFacade</code>. It is retrieved here to act as
-   * a descriptor for the initial state of the <code>View</code> based on
-   * the <code>data</code> property contents.
-   *
-   * @type Boxsplash.model.ConfigProxy
-   * @see Boxsplash.ApplicationFacade
-   */
-  configProxy: null,
-
-  /**
-   * Provides a list of notification interests to the <code>View</code>.
-   * Without an accurate list, the <code>handleNotification()</code> method
-   * may not be invoked.  A common mistake made by developers is to provide handling
-   * routines in the <code>handleNotification()</code> method but forget to
-   * add the notification name in the <code>listNotificationInterests()</code> array.
-   * <p>Note that changing this array at runtime will not have any effect on
-   * notification interests since this method is called by the <code>View</code>
-   * a single time when the <code>Mediator</code> is first registered.
-   *
-   * @return {String[]} the array of notification names to act upon.
-   */
-  listNotificationInterests: function() {
-    return [
-            Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED,
-            Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED
-            ];
-  },
-
-  /**
-   * Handles notifications broadcasted by the system provided that
-   * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
-   * return value.
-   *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
-   */
-  handleNotification: function(notification /* Notification */) {
-    switch (notification.getName()) {
-      case Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED:
-        var boxConfigVO = notification.getBody();
-        this.controlPanel.setConfigurationLabel(boxConfigVO.id);
-        break;
-
-      case Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED:
-        this.controlPanel.animationStateChanged(notification.getBody());
-        break;
-    }
-  },
-
-  /**
-   * Performs actions when the <code>Mediator</code> is registered by
-   * the <code>View</code>.  Here we listen for the "loadConfig" and "toggleStartStop"
-   * events from the <code>ControlPanel</code> and set the configuration buttons
-   * based on the contents of the <code>ConfigProxy</code>'s <code>data</code>
-   * property.
-   *
-   * @see Boxsplash.view.components.ControlPanel
-   * @see Boxsplash.model.ConfigProxy
-   */
-  onRegister: function() {
-    Boxsplash.view.ControlPanelMediator.superclass.onRegister.call(this);
-    this.controlPanel.addListener("loadConfig", this.loadConfigHandler);
-    this.controlPanel.addListener("toggleStartStop", this.toggleStartStopHandler);
-    this.controlPanel.setConfigurationButtons(this.configProxy.data);
-  },
-
-  /**
-   * Removes listeners so that the <code>View</code> can be properly disposed of
-   * and garbage collected.
-   */
-  onRemove: function() {
-    Boxsplash.view.ControlPanelMediator.superclass.onRemove.call(this);
-    this.controlPanel.removeListener("loadConfig", this.loadConfigHandler);
-    this.controlPanel.removeListener("toggleStartStop", this.toggleStartStopHandler);
-  },
-
-  /**
-   * Event handler for the "loadConfig" event dispatched by the
-   * <code>ControlPanel</code> in response to user clicks on any
-   * of the configuration buttons.
-   *
-   * @param {int} index the index of the desired configuration option settings to load.
-   */
-  loadConfigHandler: function(index) {
-    this.sendNotification(Boxsplash.ApplicationFacade.RETRIEVE_CONFIG_OPTION, index);
-  },
-
-  /**
-   * Event handler for the "toggleStartStop" event dispatched
-   * by the <code>ControlPanel</code> in response to user clicks
-   * on the <i>startStop</i> button.
-   */
-  toggleStartStopHandler: function() {
-    this.sendNotification(Boxsplash.ApplicationFacade.TOGGLE_START_STOP);
-  }
-});
-
-Ext.apply(Boxsplash.view.ControlPanelMediator, {
-  /**
-   * Constant used as the unique name and identifier for this <code>Mediator</code> subclass.
-   * @type String
-   * @constant
-   * @memberof Boxsplash.view.ControlPanelMediator
-   */
-  NAME: "ControlPanelMediator"
-});
-/**
- * @lends Boxsplash.view.ShellMediator.prototype
- */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
-  /**
-   * A named shortcut to the <code>Shell</code> instance.  This
-   * prevents us from having to reference the more
-   * ambiguous <code>viewComponent</code> property.
-   * @type Boxsplash.view.components.Shell
-   */
-  shell: null,
-
-  /**
-   * @class The <code>Mediator</code> subclass attached to
-   * the <code>Shell</code>.  Its primary responsibility here is
-   * to register additional <code>Mediator<code>s for child <code>View</code>s but
-   * it can listen for and/or send <code>Notification</code>s and steward
-   * state changes for the View.
-   *
-   * @param {Boxsplash.view.components.Shell} viewComponent the view component to register with the <code>ShellMediator</code>.
-   *
-   * @extends Puremvc.patterns.Mediator
-   *
-   * @see Boxsplash.view.components.Shell
-   * @see Boxsplash.view.WorldSpaceMediator
-   * @see Boxsplash.view.ControlPanelMediator
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function(viewComponent /* Shell */) {
-    Boxsplash.view.ShellMediator.superclass.constructor.call(this, Boxsplash.view.ShellMediator.NAME, viewComponent /* Shell */);
-    this.shell = this.getViewComponent();
-  }, 
-
-  /**
-   * Called by the <code>View</code> when the <code>Mediator</code> is registered.
-   * This method is usually overridden as needed by the subclass.
-   */
-  onRegister: function() {
-    Boxsplash.view.ShellMediator.superclass.onRegister.call(this);
-
-    // Handle creation and registration of all remaining Mediators here.
-    this.facade.registerMediator(new Boxsplash.view.WorldSpaceMediator(this.shell.worldSpace));
-    this.facade.registerMediator(new Boxsplash.view.ControlPanelMediator(this.shell.controlPanel));
-  }
-});
-
-Ext.apply(Boxsplash.view.ShellMediator, {
-  /**
-   * Constant used as a unique name for this <code>Mediator</code> subclass.
-   * @type String
-   * @constant
-   * @memberof Boxsplash.view.ShellMediator
-   */
-  NAME: "ShellMediator"
-});
-/**
- * @lends Boxsplash.view.WorldSpaceMediator.prototype
- */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
-  /**
-   * @class The <code>Mediator</code> subclass attached to the
-   * <code>WorldSpace</code> <code>View</code>. Its primary responsibilities here
-   * are to handle notification from the system that require changing
-   * the state of the animation (<code>BoxConfigVO</code> data) This <code>Mediator</code> is
-   * registered by the <code>ShellMediator</code>'s constructor.
-   *
-   * @param {Boxsplash.view.WorldSpace} viewComponent The <code>WorldSpace</code> instance.
-   * @extends Puremvc.patterns.Mediator
-   *
-   * @see Boxsplash.view.components.WorldSpace
-   * @see Boxsplash.view.ShellMediator
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function(viewComponent /* WorldSpace */) {
-    Boxsplash.view.WorldSpaceMediator.superclass.constructor.call(this, Boxsplash.view.WorldSpaceMediator.NAME, viewComponent);
-    this.worldSpace = this.getViewComponent();
-
-    // Overwrite listener method with ones bound to 'this'
-    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
-  },
-
-  /**
-   * A named shortcut to the <code>WorldSpace</code> instance.
-   * This prevents us from having to reference the more
-   * ambiguous <code>viewComponent</code> property.
-   *
-   * @type Boxsplash.view.components.WorldSpace
-   */
-  worldSpace: null,
-
-  /**
-   * Adds the "animationStateChanged" listener to the <code>WorldSpace</code> instance.
-   */
-  onRegister: function() {
-    Boxsplash.view.WorldSpaceMediator.superclass.onRegister.call(this);
-    this.worldSpace.addListener("animationStateChanged", this.animationStateChangedHandler);
-  },
-
-  /**
-   * Removes listeners so that the <code>View</code> can be properly disposed of and garbage collected.
-   */
-  onRemove: function() {
-    Boxsplash.view.WorldSpaceMediator.superclass.onRemove.call(this);
-    this.worldSpace.removeListener("animationStateChanged", this.animationStateChangedHandler);
-  },
-
-  /**
-   * Provides a list of notification interests to the <code>View</code>.
-   * Without an accurate list, the <code>handleNotification()</code> method
-   * may not be invoked.  A common mistake made by developers is to provide handling
-   * routines in the <code>handleNotification()</code> method but forget to
-   * add the notification name in the <code>listNotificationInterests()</code> array.
-   * <p>Note that changing this array at runtime will not have any effect on
-   * notification interests since this method is called by the <code>View</code>
-   * a single time when the <code>Mediator</code> is first registered.
-   *
-   * @return {String[]} the array of notification names to act upon.
-   */
-  listNotificationInterests: function() {
-    return [
-            Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED,
-            Boxsplash.ApplicationFacade.TOGGLE_START_STOP
-            ];
-  },
-
-  /**
-   * Handles notifications broadcasted by the system provided that
-   * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
-   * return value.
-   *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
-   */
-  handleNotification: function(notification /* Notification */) {
-    switch (notification.getName()) {
-      case Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED:
-        this.worldSpace.setConfiguration(notification.getBody());
-        break;
-
-      case Boxsplash.ApplicationFacade.TOGGLE_START_STOP:
-        this.worldSpace.toggleStartStop();
-        break;
-    }
-  },
-
-  /**
-   * Handler for "animationStateChanged" events fired from the
-   * <code>WorldSpace</code> <code>View</code>. The system is then notified
-   * so any interested <code>Mediator</code>'s can act.
-   *
-   * @param {Boolean} inTween indicates whether or not the animation is running.
-   */
-  animationStateChangedHandler: function(inTween) {
-    this.sendNotification(Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED, inTween);
-  }
-});
-
-Ext.apply(Boxsplash.view.WorldSpaceMediator, {
-  /**
-   * Constant used as a unique name and identifier for this <code>Mediator</code> subclass.
-   * @type String
-   * @constant
-   * @memberof Boxsplash.view.WorldSpaceMediator
-   */
-  NAME: "WorldSpaceMediator"
 });
 /**
  * @lends Boxsplash.view.components.core.UIComponent.prototype
@@ -906,6 +579,7 @@ Boxsplash.view.components.Box = Ext.extend(Boxsplash.view.components.core.UIComp
    */
   unscaledHeight: 0
 });
+
 /**
  * @lends Boxsplash.view.components.ControlPanel.prototype
  */
@@ -1106,55 +780,7 @@ Boxsplash.view.components.ControlPanel = Ext.extend(Boxsplash.view.components.co
     this.fireEvent("toggleStartStop");
   }
 });
-/**
- * @lends Boxsplash.view.components.Shell.prototype
- */
-Ext.namespace('Boxsplash.view.components');
-Boxsplash.view.components.Shell = Ext.extend(Boxsplash.view.components.core.UIComponent, {
-  /**
-   * @class Serves as the main application's <code>View</code>.
-   * All other <code>View</code>s will become children of this control making
-   * the <code>Shell</code> act as the 'stage'.
-   *
-   * @extends Boxsplash.view.components.core.UIComponent
-   *
-   * @author Justin Wilaby
-   * @author Tony DeFusco
-   *
-   * @constructs
-   */
-  constructor: function() {
-    Boxsplash.view.components.Shell.superclass.constructor.call(this, "shell");
-  },
 
-  /**
-   * The 'control panel' View instance used in the application.
-   *
-   * @type Boxsplash.view.components.core.UIComponent
-   * @see Boxsplash.view.components.core.UIComponent
-   */
-  controlPanel: null,
-
-  /**
-   * The viewport for the 3D Box animation.
-   *
-   * @type Boxsplash.view.components.core.UIComponent
-   * @see Boxsplash.view.components.core.UIComponent
-   */
-  worldSpace: null,
-
-  /**
-   * Creates and adds the control panel and
-   * world space to this as children.
-   */
-  initializeChildren: function() {
-    this.controlPanel = new Boxsplash.view.components.ControlPanel();
-    this.addChild(this.controlPanel);
-    //-----------------
-    this.worldSpace = new Boxsplash.view.components.WorldSpace();
-    this.addChild(this.worldSpace);
-  }
-});
 /**
  * @lends Boxsplash.view.components.WorldSpace.prototype
  */
@@ -1494,4 +1120,381 @@ Boxsplash.view.components.WorldSpace = Ext.extend(Boxsplash.view.components.core
     var R = value[0], G = value[1], B = value[2];
     return _toHex(R) + _toHex(G) + _toHex(B);
    }
+});
+
+/**
+ * @lends Boxsplash.view.components.Shell.prototype
+ */
+Ext.namespace('Boxsplash.view.components');
+Boxsplash.view.components.Shell = Ext.extend(Boxsplash.view.components.core.UIComponent, {
+  /**
+   * @class Serves as the main application's <code>View</code>.
+   * All other <code>View</code>s will become children of this control making
+   * the <code>Shell</code> act as the 'stage'.
+   *
+   * @extends Boxsplash.view.components.core.UIComponent
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function() {
+    Boxsplash.view.components.Shell.superclass.constructor.call(this, "shell");
+  },
+
+  /**
+   * The 'control panel' View instance used in the application.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   * @see Boxsplash.view.components.core.UIComponent
+   */
+  controlPanel: null,
+
+  /**
+   * The viewport for the 3D Box animation.
+   *
+   * @type Boxsplash.view.components.core.UIComponent
+   * @see Boxsplash.view.components.core.UIComponent
+   */
+  worldSpace: null,
+
+  /**
+   * Creates and adds the control panel and
+   * world space to this as children.
+   */
+  initializeChildren: function() {
+    this.controlPanel = new Boxsplash.view.components.ControlPanel();
+    this.addChild(this.controlPanel);
+    //-----------------
+    this.worldSpace = new Boxsplash.view.components.WorldSpace();
+    this.addChild(this.worldSpace);
+  }
+});
+
+/**
+ * @lends Boxsplash.view.ControlPanelMediator.prototype
+ */
+Ext.namespace('Boxsplash.view');
+Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
+  /**
+   * @class The <code>Mediator</code> subclass attached to the
+   * <code>ControlPanel</code> <code>View</code>. Its primary responsibilities here
+   * are to listen for and notify the system of user interactions that change
+   * the state of the application including that of other <code>View<code>s; specifically
+   * start/stop and config button clicks.  This <code>Mediator</code> is
+   * registered by the <code>ShellMediator</code>'s constructor.
+   *
+   * @extends Puremvc.patterns.Mediator
+   *
+   * @param {Boxsplash.view.components.ControlPanel} viewComponent the <code>ControlPanel</code> instance
+   * assigned to this mediator.
+   *
+   * @see Boxsplash.view.components.ControlPanel
+   * @see Boxsplash.view.ShellMediator
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function(viewComponent /* ControlPanel */) {
+    Boxsplash.view.ControlPanelMediator.superclass.constructor.call(this, Boxsplash.view.ControlPanelMediator.NAME, viewComponent);
+    this.controlPanel = this.getViewComponent();
+    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
+
+    // Replace listener handlers with methods bound to 'this'
+    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
+    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
+  },
+
+  /**
+   * A named shortcut to the <code>ControlPanel</code> instance.  This
+   * prevents us from having to reference the more
+   * ambiguous <code>viewComponent</code> property.
+   * @type Boxsplash.view.components.ControlPanel
+   */
+  controlPanel: null,
+
+  /**
+   * The <code>ConfigProxy</code> instance registered to the
+   * <code>ApplicationFacade</code>. It is retrieved here to act as
+   * a descriptor for the initial state of the <code>View</code> based on
+   * the <code>data</code> property contents.
+   *
+   * @type Boxsplash.model.ConfigProxy
+   * @see Boxsplash.ApplicationFacade
+   */
+  configProxy: null,
+
+  /**
+   * Provides a list of notification interests to the <code>View</code>.
+   * Without an accurate list, the <code>handleNotification()</code> method
+   * may not be invoked.  A common mistake made by developers is to provide handling
+   * routines in the <code>handleNotification()</code> method but forget to
+   * add the notification name in the <code>listNotificationInterests()</code> array.
+   * <p>Note that changing this array at runtime will not have any effect on
+   * notification interests since this method is called by the <code>View</code>
+   * a single time when the <code>Mediator</code> is first registered.
+   *
+   * @return {String[]} the array of notification names to act upon.
+   */
+  listNotificationInterests: function() {
+    return [
+            Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED,
+            Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED
+            ];
+  },
+
+  /**
+   * Handles notifications broadcasted by the system provided that
+   * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
+   * return value.
+   *
+   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   */
+  handleNotification: function(notification /* Notification */) {
+    switch (notification.getName()) {
+      case Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED:
+        var boxConfigVO = notification.getBody();
+        this.controlPanel.setConfigurationLabel(boxConfigVO.id);
+        break;
+
+      case Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED:
+        this.controlPanel.animationStateChanged(notification.getBody());
+        break;
+    }
+  },
+
+  /**
+   * Performs actions when the <code>Mediator</code> is registered by
+   * the <code>View</code>.  Here we listen for the "loadConfig" and "toggleStartStop"
+   * events from the <code>ControlPanel</code> and set the configuration buttons
+   * based on the contents of the <code>ConfigProxy</code>'s <code>data</code>
+   * property.
+   *
+   * @see Boxsplash.view.components.ControlPanel
+   * @see Boxsplash.model.ConfigProxy
+   */
+  onRegister: function() {
+    Boxsplash.view.ControlPanelMediator.superclass.onRegister.call(this);
+    this.controlPanel.addListener("loadConfig", this.loadConfigHandler);
+    this.controlPanel.addListener("toggleStartStop", this.toggleStartStopHandler);
+    this.controlPanel.setConfigurationButtons(this.configProxy.data);
+  },
+
+  /**
+   * Removes listeners so that the <code>View</code> can be properly disposed of
+   * and garbage collected.
+   */
+  onRemove: function() {
+    Boxsplash.view.ControlPanelMediator.superclass.onRemove.call(this);
+    this.controlPanel.removeListener("loadConfig", this.loadConfigHandler);
+    this.controlPanel.removeListener("toggleStartStop", this.toggleStartStopHandler);
+  },
+
+  /**
+   * Event handler for the "loadConfig" event dispatched by the
+   * <code>ControlPanel</code> in response to user clicks on any
+   * of the configuration buttons.
+   *
+   * @param {int} index the index of the desired configuration option settings to load.
+   */
+  loadConfigHandler: function(index) {
+    this.sendNotification(Boxsplash.ApplicationFacade.RETRIEVE_CONFIG_OPTION, index);
+  },
+
+  /**
+   * Event handler for the "toggleStartStop" event dispatched
+   * by the <code>ControlPanel</code> in response to user clicks
+   * on the <i>startStop</i> button.
+   */
+  toggleStartStopHandler: function() {
+    this.sendNotification(Boxsplash.ApplicationFacade.TOGGLE_START_STOP);
+  }
+});
+
+Ext.apply(Boxsplash.view.ControlPanelMediator, {
+  /**
+   * Constant used as the unique name and identifier for this <code>Mediator</code> subclass.
+   * @type String
+   * @constant
+   * @memberof Boxsplash.view.ControlPanelMediator
+   */
+  NAME: "ControlPanelMediator"
+});
+/**
+ * @lends Boxsplash.view.WorldSpaceMediator.prototype
+ */
+Ext.namespace('Boxsplash.view');
+Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
+  /**
+   * @class The <code>Mediator</code> subclass attached to the
+   * <code>WorldSpace</code> <code>View</code>. Its primary responsibilities here
+   * are to handle notification from the system that require changing
+   * the state of the animation (<code>BoxConfigVO</code> data) This <code>Mediator</code> is
+   * registered by the <code>ShellMediator</code>'s constructor.
+   *
+   * @param {Boxsplash.view.WorldSpace} viewComponent The <code>WorldSpace</code> instance.
+   * @extends Puremvc.patterns.Mediator
+   *
+   * @see Boxsplash.view.components.WorldSpace
+   * @see Boxsplash.view.ShellMediator
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function(viewComponent /* WorldSpace */) {
+    Boxsplash.view.WorldSpaceMediator.superclass.constructor.call(this, Boxsplash.view.WorldSpaceMediator.NAME, viewComponent);
+    this.worldSpace = this.getViewComponent();
+
+    // Overwrite listener method with ones bound to 'this'
+    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
+  },
+
+  /**
+   * A named shortcut to the <code>WorldSpace</code> instance.
+   * This prevents us from having to reference the more
+   * ambiguous <code>viewComponent</code> property.
+   *
+   * @type Boxsplash.view.components.WorldSpace
+   */
+  worldSpace: null,
+
+  /**
+   * Adds the "animationStateChanged" listener to the <code>WorldSpace</code> instance.
+   */
+  onRegister: function() {
+    Boxsplash.view.WorldSpaceMediator.superclass.onRegister.call(this);
+    this.worldSpace.addListener("animationStateChanged", this.animationStateChangedHandler);
+  },
+
+  /**
+   * Removes listeners so that the <code>View</code> can be properly disposed of and garbage collected.
+   */
+  onRemove: function() {
+    Boxsplash.view.WorldSpaceMediator.superclass.onRemove.call(this);
+    this.worldSpace.removeListener("animationStateChanged", this.animationStateChangedHandler);
+  },
+
+  /**
+   * Provides a list of notification interests to the <code>View</code>.
+   * Without an accurate list, the <code>handleNotification()</code> method
+   * may not be invoked.  A common mistake made by developers is to provide handling
+   * routines in the <code>handleNotification()</code> method but forget to
+   * add the notification name in the <code>listNotificationInterests()</code> array.
+   * <p>Note that changing this array at runtime will not have any effect on
+   * notification interests since this method is called by the <code>View</code>
+   * a single time when the <code>Mediator</code> is first registered.
+   *
+   * @return {String[]} the array of notification names to act upon.
+   */
+  listNotificationInterests: function() {
+    return [
+            Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED,
+            Boxsplash.ApplicationFacade.TOGGLE_START_STOP
+            ];
+  },
+
+  /**
+   * Handles notifications broadcasted by the system provided that
+   * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
+   * return value.
+   *
+   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   */
+  handleNotification: function(notification /* Notification */) {
+    switch (notification.getName()) {
+      case Boxsplash.model.ConfigProxy.CONFIG_OPTION_RETRIEVED:
+        this.worldSpace.setConfiguration(notification.getBody());
+        break;
+
+      case Boxsplash.ApplicationFacade.TOGGLE_START_STOP:
+        this.worldSpace.toggleStartStop();
+        break;
+    }
+  },
+
+  /**
+   * Handler for "animationStateChanged" events fired from the
+   * <code>WorldSpace</code> <code>View</code>. The system is then notified
+   * so any interested <code>Mediator</code>'s can act.
+   *
+   * @param {Boolean} inTween indicates whether or not the animation is running.
+   */
+  animationStateChangedHandler: function(inTween) {
+    this.sendNotification(Boxsplash.ApplicationFacade.ANIMATION_STATE_CHANGED, inTween);
+  }
+});
+
+Ext.apply(Boxsplash.view.WorldSpaceMediator, {
+  /**
+   * Constant used as a unique name and identifier for this <code>Mediator</code> subclass.
+   * @type String
+   * @constant
+   * @memberof Boxsplash.view.WorldSpaceMediator
+   */
+  NAME: "WorldSpaceMediator"
+});
+/**
+ * @lends Boxsplash.view.ShellMediator.prototype
+ */
+Ext.namespace('Boxsplash.view');
+Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
+  /**
+   * A named shortcut to the <code>Shell</code> instance.  This
+   * prevents us from having to reference the more
+   * ambiguous <code>viewComponent</code> property.
+   * @type Boxsplash.view.components.Shell
+   */
+  shell: null,
+
+  /**
+   * @class The <code>Mediator</code> subclass attached to
+   * the <code>Shell</code>.  Its primary responsibility here is
+   * to register additional <code>Mediator<code>s for child <code>View</code>s but
+   * it can listen for and/or send <code>Notification</code>s and steward
+   * state changes for the View.
+   *
+   * @param {Boxsplash.view.components.Shell} viewComponent the view component to register with the <code>ShellMediator</code>.
+   *
+   * @extends Puremvc.patterns.Mediator
+   *
+   * @see Boxsplash.view.components.Shell
+   * @see Boxsplash.view.WorldSpaceMediator
+   * @see Boxsplash.view.ControlPanelMediator
+   *
+   * @author Justin Wilaby
+   * @author Tony DeFusco
+   *
+   * @constructs
+   */
+  constructor: function(viewComponent /* Shell */) {
+    Boxsplash.view.ShellMediator.superclass.constructor.call(this, Boxsplash.view.ShellMediator.NAME, viewComponent /* Shell */);
+    this.shell = this.getViewComponent();
+  }, 
+
+  /**
+   * Called by the <code>View</code> when the <code>Mediator</code> is registered.
+   * This method is usually overridden as needed by the subclass.
+   */
+  onRegister: function() {
+    Boxsplash.view.ShellMediator.superclass.onRegister.call(this);
+
+    // Handle creation and registration of all remaining Mediators here.
+    this.facade.registerMediator(new Boxsplash.view.WorldSpaceMediator(this.shell.worldSpace));
+    this.facade.registerMediator(new Boxsplash.view.ControlPanelMediator(this.shell.controlPanel));
+  }
+});
+
+Ext.apply(Boxsplash.view.ShellMediator, {
+  /**
+   * Constant used as a unique name for this <code>Mediator</code> subclass.
+   * @type String
+   * @constant
+   * @memberof Boxsplash.view.ShellMediator
+   */
+  NAME: "ShellMediator"
 });
