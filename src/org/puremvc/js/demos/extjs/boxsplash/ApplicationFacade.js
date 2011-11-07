@@ -114,20 +114,15 @@ Ext.apply(Boxsplash.ApplicationFacade, {
   ANIMATION_STATE_CHANGED: "animationStateChanged",
 
   /**
-   * @private
    * @memberof Boxsplash.ApplicationFacade
-   */
-  _instance: null
-});
-
-Ext.apply(Boxsplash.ApplicationFacade, {
-  /**
-   * @memberof Boxsplash.ApplicationFacade
+   *
+   * @return {Boxsplash.ApplicationFacade} the <code>Facade</code> subclass instance
+   * used throughout the application.
    */
   getInstance: function() {
-    if (Boxsplash.ApplicationFacade._instance === null) {
-      Boxsplash.ApplicationFacade._instance = new Boxsplash.ApplicationFacade();
+    if (Puremvc.patterns.Facade._instance === null) {
+      Puremvc.patterns.Facade._instance = new Boxsplash.ApplicationFacade();
     }
-    return Boxsplash.ApplicationFacade._instance;
+    return Puremvc.patterns.Facade._instance;
   }
 });
