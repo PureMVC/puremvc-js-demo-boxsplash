@@ -27,11 +27,6 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
   constructor: function(viewComponent /* ControlPanel */) {
     Boxsplash.view.ControlPanelMediator.superclass.constructor.call(this, Boxsplash.view.ControlPanelMediator.NAME, viewComponent);
     this.controlPanel = this.getViewComponent();
-    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
-
-    // Replace listener handlers with methods bound to 'this'
-    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
-    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
   },
 
   /**
@@ -104,6 +99,12 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    */
   onRegister: function() {
     Boxsplash.view.ControlPanelMediator.superclass.onRegister.call(this);
+    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
+
+    // Replace listener handlers with methods bound to 'this'
+    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
+    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
+
     this.controlPanel.addListener("loadConfig", this.loadConfigHandler);
     this.controlPanel.addListener("toggleStartStop", this.toggleStartStopHandler);
     this.controlPanel.setConfigurationButtons(this.configProxy.data);

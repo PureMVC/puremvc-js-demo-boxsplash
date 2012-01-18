@@ -24,9 +24,6 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
   constructor: function(viewComponent /* WorldSpace */) {
     Boxsplash.view.WorldSpaceMediator.superclass.constructor.call(this, Boxsplash.view.WorldSpaceMediator.NAME, viewComponent);
     this.worldSpace = this.getViewComponent();
-
-    // Overwrite listener method with ones bound to 'this'
-    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
   },
 
   /**
@@ -43,6 +40,10 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    */
   onRegister: function() {
     Boxsplash.view.WorldSpaceMediator.superclass.onRegister.call(this);
+
+    // Overwrite listener method with one bound to 'this'
+    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
+
     this.worldSpace.addListener("animationStateChanged", this.animationStateChangedHandler);
   },
 

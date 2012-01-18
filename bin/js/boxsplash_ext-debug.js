@@ -27,14 +27,16 @@ Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
    *        11 in "Implementation Idioms and Best Practices" by Cliff Hall.
    *        </p>
    * @extends Puremvc.patterns.Facade
+   *
+   * @param {string} key The multiton key.
    * 
    * @author Justin Wilaby
    * @author Tony DeFusco
    *
    * @constructs
    */
-  constructor: function() {
-    Boxsplash.ApplicationFacade.superclass.constructor.call(this);
+  constructor: function(key) {
+    Boxsplash.ApplicationFacade.superclass.constructor.call(this, key);
   },
 
   /**
@@ -116,14 +118,17 @@ Ext.apply(Boxsplash.ApplicationFacade, {
   /**
    * @memberof Boxsplash.ApplicationFacade
    *
+   * @param {string} key The multiton key.
+   *
    * @return {Boxsplash.ApplicationFacade} the <code>Facade</code> subclass instance
    * used throughout the application.
    */
-  getInstance: function() {
-    if (Puremvc.patterns.Facade._instance === null) {
-      Puremvc.patterns.Facade._instance = new Boxsplash.ApplicationFacade();
+  getInstance: function(key) {
+    if (!Puremvc.patterns.Facade.hasCore(key)) {
+      new Boxsplash.ApplicationFacade(key);
     }
-    return Puremvc.patterns.Facade._instance;
+    var retVal = Puremvc.patterns.Facade.getInstance(key);
+    return retVal;
   }
 });
 /**
@@ -1201,11 +1206,6 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
   constructor: function(viewComponent /* ControlPanel */) {
     Boxsplash.view.ControlPanelMediator.superclass.constructor.call(this, Boxsplash.view.ControlPanelMediator.NAME, viewComponent);
     this.controlPanel = this.getViewComponent();
-    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
-
-    // Replace listener handlers with methods bound to 'this'
-    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
-    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
   },
 
   /**
@@ -1278,6 +1278,12 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    */
   onRegister: function() {
     Boxsplash.view.ControlPanelMediator.superclass.onRegister.call(this);
+    this.configProxy = this.facade.retrieveProxy(Boxsplash.model.ConfigProxy.NAME);
+
+    // Replace listener handlers with methods bound to 'this'
+    this.loadConfigHandler = this.loadConfigHandler.createDelegate(this);
+    this.toggleStartStopHandler = this.toggleStartStopHandler.createDelegate(this);
+
     this.controlPanel.addListener("loadConfig", this.loadConfigHandler);
     this.controlPanel.addListener("toggleStartStop", this.toggleStartStopHandler);
     this.controlPanel.setConfigurationButtons(this.configProxy.data);
@@ -1349,9 +1355,6 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
   constructor: function(viewComponent /* WorldSpace */) {
     Boxsplash.view.WorldSpaceMediator.superclass.constructor.call(this, Boxsplash.view.WorldSpaceMediator.NAME, viewComponent);
     this.worldSpace = this.getViewComponent();
-
-    // Overwrite listener method with ones bound to 'this'
-    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
   },
 
   /**
@@ -1368,6 +1371,10 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    */
   onRegister: function() {
     Boxsplash.view.WorldSpaceMediator.superclass.onRegister.call(this);
+
+    // Overwrite listener method with one bound to 'this'
+    this.animationStateChangedHandler = this.animationStateChangedHandler.createDelegate(this);
+
     this.worldSpace.addListener("animationStateChanged", this.animationStateChangedHandler);
   },
 

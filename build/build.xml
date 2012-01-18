@@ -6,7 +6,7 @@
 
   <target name="cleanup" description="Remove any previously generated artifacts.">
     <delete failonerror="false">
-      <fileset dir="${output-dir}" includes="${output-file}"/>
+      <fileset dir="${output-dir}" includes="boxsplash_ext*.js"/>
     </delete>
     <mkdir dir="${output-dir}"/>
   </target>

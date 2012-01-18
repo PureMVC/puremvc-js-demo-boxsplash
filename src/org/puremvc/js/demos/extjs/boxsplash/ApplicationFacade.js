@@ -27,14 +27,16 @@ Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
    *        11 in "Implementation Idioms and Best Practices" by Cliff Hall.
    *        </p>
    * @extends Puremvc.patterns.Facade
+   *
+   * @param {string} key The multiton key.
    * 
    * @author Justin Wilaby
    * @author Tony DeFusco
    *
    * @constructs
    */
-  constructor: function() {
-    Boxsplash.ApplicationFacade.superclass.constructor.call(this);
+  constructor: function(key) {
+    Boxsplash.ApplicationFacade.superclass.constructor.call(this, key);
   },
 
   /**
@@ -116,13 +118,16 @@ Ext.apply(Boxsplash.ApplicationFacade, {
   /**
    * @memberof Boxsplash.ApplicationFacade
    *
+   * @param {string} key The multiton key.
+   *
    * @return {Boxsplash.ApplicationFacade} the <code>Facade</code> subclass instance
    * used throughout the application.
    */
-  getInstance: function() {
-    if (Puremvc.patterns.Facade._instance === null) {
-      Puremvc.patterns.Facade._instance = new Boxsplash.ApplicationFacade();
+  getInstance: function(key) {
+    if (!Puremvc.patterns.Facade.hasCore(key)) {
+      new Boxsplash.ApplicationFacade(key);
     }
-    return Puremvc.patterns.Facade._instance;
+    var retVal = Puremvc.patterns.Facade.getInstance(key);
+    return retVal;
   }
 });
