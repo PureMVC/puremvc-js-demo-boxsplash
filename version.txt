@@ -1,0 +1,14 @@
+PureMVC/ExtJS Javascript Demo - Box Splash
+By Tony DeFusco <tony.defusco@puremvc.org>
+Copyright(c) 2012 Tony DeFusco <tony.defusco@puremvc.org>
+Adapted from MooTools Port By Justin Wilaby <justin.wilaby@puremvc.org>
+Copyright(c) 2012 Justin Wilaby, Some rights reserved.
+--------------------------------------------------------------------------
+Release Date: 01/19/2012
+    Platform: JavaScript 1.5 / ExtJS 4
+     Version: 1 
+    Revision: 0
+      Author: Tony DeFusco <tony.defusco@puremvc.org>
+     License: Creative Commons Attribution 3.0 United States License
+--------------------------------------------------------------------------
+1.0 - First official release on PureMVC.org.
