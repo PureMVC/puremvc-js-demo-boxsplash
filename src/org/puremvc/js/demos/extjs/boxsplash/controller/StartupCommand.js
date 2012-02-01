@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.StartupCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.MacroCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.MacroCommand",
+  /** @extends puremvc.MacroCommand */
+  extend: "puremvc.MacroCommand",
 
   /**
    * @class A <code>MacroCommand</code> subclass

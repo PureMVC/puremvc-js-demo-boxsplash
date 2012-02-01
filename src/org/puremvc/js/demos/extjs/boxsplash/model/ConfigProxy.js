@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.model");
 Ext.define("Boxsplash.model.ConfigProxy", {
 
-  /** @extends org.puremvc.js.multicore.patterns.proxy.Proxy */
-  extend: "org.puremvc.js.multicore.patterns.proxy.Proxy",
+  /** @extends puremvc.Proxy */
+  extend: "puremvc.Proxy",
 
   /**
    * @class The Configuration <code>Proxy</code> used to house

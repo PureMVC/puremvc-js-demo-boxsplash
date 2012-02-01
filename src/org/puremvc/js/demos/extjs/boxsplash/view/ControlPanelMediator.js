@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.view");
 Ext.define("Boxsplash.view.ControlPanelMediator", {
 
-  /** @extends org.puremvc.js.multicore.patterns.mediator.Mediator */
-  extend: "org.puremvc.js.multicore.patterns.mediator.Mediator",
+  /** @extends puremvc.Mediator */
+  extend: "puremvc.Mediator",
 
   /**
    * @class The <code>Mediator</code> subclass attached to the
@@ -74,7 +74,7 @@ Ext.define("Boxsplash.view.ControlPanelMediator", {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {

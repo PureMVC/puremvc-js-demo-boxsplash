@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash");
 Ext.define("Boxsplash.ApplicationFacade", {
 
-  /** @extends org.puremvc.js.multicore.patterns.facade.Facade */
-  extend: "org.puremvc.js.multicore.patterns.facade.Facade",
+  /** @extends puremvc.Facade */
+  extend: "puremvc.Facade",
 
   /**
    * @class <p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
@@ -125,10 +125,10 @@ Ext.define("Boxsplash.ApplicationFacade", {
      * used throughout the application.
      */
     getInstance: function(key) {
-      if (!org.puremvc.js.multicore.patterns.facade.Facade.hasCore(key)) {
+      if (!puremvc.Facade.hasCore(key)) {
         new Boxsplash.ApplicationFacade(key);
       }
-      var retVal = org.puremvc.js.multicore.patterns.facade.Facade.getInstance(key);
+      var retVal = puremvc.Facade.getInstance(key);
       return retVal;
     }
   }
@@ -139,8 +139,8 @@ Ext.define("Boxsplash.ApplicationFacade", {
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.RetrieveConfigOptionCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass
@@ -162,7 +162,7 @@ Ext.define("Boxsplash.controller.RetrieveConfigOptionCommand", {
    * Fulfills the use case given by the <code>Notification</code>.
    * In this case, the retrieval of a specific <code>BoxConfigVO</code>.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification containing the location of a <code>BoxConfigVO</code>.
+   * @param {puremvc.Notification} notification containing the location of a <code>BoxConfigVO</code>.
    *
    * @see Boxsplash.model.vo.BoxConfigVO
    */
@@ -179,8 +179,8 @@ Ext.define("Boxsplash.controller.RetrieveConfigOptionCommand", {
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.ModelPrepCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass that is
@@ -200,7 +200,7 @@ Ext.define("Boxsplash.controller.ModelPrepCommand", {
   /**
    * Registers the <code>ConfigProxy</code> with the <code>Model</code>.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification the <code>Notification</code> to handle.
+   * @param {puremvc.Notification} notification the <code>Notification</code> to handle.
    *
    * @see Boxsplash.model.ConfigProxy
    */
@@ -215,8 +215,8 @@ Ext.define("Boxsplash.controller.ModelPrepCommand", {
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.ViewPrepCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass that is
@@ -240,7 +240,7 @@ Ext.define("Boxsplash.controller.ViewPrepCommand", {
    * Executes the command. A <code>Notification</code>
    * instance will always be present as an argument to
    * this method.
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification The notification containing
+   * @param {puremvc.Notification} notification The notification containing
    * the view instance in the <code>body</code> property.
    * (In this case our Shell)
    */
@@ -260,8 +260,8 @@ Ext.define("Boxsplash.controller.ViewPrepCommand", {
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.StartupCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.MacroCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.MacroCommand",
+  /** @extends puremvc.MacroCommand */
+  extend: "puremvc.MacroCommand",
 
   /**
    * @class A <code>MacroCommand</code> subclass
@@ -322,8 +322,8 @@ Ext.define("Boxsplash.model.vo.BoxConfigVO", {
 Ext.namespace("Boxsplash.model");
 Ext.define("Boxsplash.model.ConfigProxy", {
 
-  /** @extends org.puremvc.js.multicore.patterns.proxy.Proxy */
-  extend: "org.puremvc.js.multicore.patterns.proxy.Proxy",
+  /** @extends puremvc.Proxy */
+  extend: "puremvc.Proxy",
 
   /**
    * @class The Configuration <code>Proxy</code> used to house
@@ -1210,8 +1210,8 @@ Ext.define("Boxsplash.view.components.Shell", {
 Ext.namespace("Boxsplash.view");
 Ext.define("Boxsplash.view.ControlPanelMediator", {
 
-  /** @extends org.puremvc.js.multicore.patterns.mediator.Mediator */
-  extend: "org.puremvc.js.multicore.patterns.mediator.Mediator",
+  /** @extends puremvc.Mediator */
+  extend: "puremvc.Mediator",
 
   /**
    * @class The <code>Mediator</code> subclass attached to the
@@ -1280,7 +1280,7 @@ Ext.define("Boxsplash.view.ControlPanelMediator", {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {
@@ -1364,8 +1364,8 @@ Ext.define("Boxsplash.view.ControlPanelMediator", {
 Ext.namespace("Boxsplash.view");
 Ext.define("Boxsplash.view.WorldSpaceMediator", {
 
-  /** @extends org.puremvc.js.multicore.patterns.mediator.Mediator */
-  extend: "org.puremvc.js.multicore.patterns.mediator.Mediator",
+  /** @extends puremvc.Mediator */
+  extend: "puremvc.Mediator",
 
   /**
    * @class The <code>Mediator</code> subclass attached to the
@@ -1442,7 +1442,7 @@ Ext.define("Boxsplash.view.WorldSpaceMediator", {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {
@@ -1483,8 +1483,8 @@ Ext.define("Boxsplash.view.WorldSpaceMediator", {
 Ext.namespace("Boxsplash.view");
 Ext.define("Boxsplash.view.ShellMediator", {
 
-  /** @extends org.puremvc.js.multicore.patterns.mediator.Mediator */
-  extend: "org.puremvc.js.multicore.patterns.mediator.Mediator",
+  /** @extends puremvc.Mediator */
+  extend: "puremvc.Mediator",
 
   /**
    * A named shortcut to the <code>Shell</code> instance.  This

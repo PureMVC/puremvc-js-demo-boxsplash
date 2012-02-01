@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.RetrieveConfigOptionCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass
@@ -27,7 +27,7 @@ Ext.define("Boxsplash.controller.RetrieveConfigOptionCommand", {
    * Fulfills the use case given by the <code>Notification</code>.
    * In this case, the retrieval of a specific <code>BoxConfigVO</code>.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification containing the location of a <code>BoxConfigVO</code>.
+   * @param {puremvc.Notification} notification containing the location of a <code>BoxConfigVO</code>.
    *
    * @see Boxsplash.model.vo.BoxConfigVO
    */

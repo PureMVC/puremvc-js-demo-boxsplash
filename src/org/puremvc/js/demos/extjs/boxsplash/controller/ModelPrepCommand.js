@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.ModelPrepCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass that is
@@ -25,7 +25,7 @@ Ext.define("Boxsplash.controller.ModelPrepCommand", {
   /**
    * Registers the <code>ConfigProxy</code> with the <code>Model</code>.
    *
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification the <code>Notification</code> to handle.
+   * @param {puremvc.Notification} notification the <code>Notification</code> to handle.
    *
    * @see Boxsplash.model.ConfigProxy
    */

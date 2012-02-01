@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash");
 Ext.define("Boxsplash.ApplicationFacade", {
 
-  /** @extends org.puremvc.js.multicore.patterns.facade.Facade */
-  extend: "org.puremvc.js.multicore.patterns.facade.Facade",
+  /** @extends puremvc.Facade */
+  extend: "puremvc.Facade",
 
   /**
    * @class <p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
@@ -125,10 +125,10 @@ Ext.define("Boxsplash.ApplicationFacade", {
      * used throughout the application.
      */
     getInstance: function(key) {
-      if (!org.puremvc.js.multicore.patterns.facade.Facade.hasCore(key)) {
+      if (!puremvc.Facade.hasCore(key)) {
         new Boxsplash.ApplicationFacade(key);
       }
-      var retVal = org.puremvc.js.multicore.patterns.facade.Facade.getInstance(key);
+      var retVal = puremvc.Facade.getInstance(key);
       return retVal;
     }
   }

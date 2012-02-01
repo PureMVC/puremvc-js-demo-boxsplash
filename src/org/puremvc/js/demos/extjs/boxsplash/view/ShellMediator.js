@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.view");
 Ext.define("Boxsplash.view.ShellMediator", {
 
-  /** @extends org.puremvc.js.multicore.patterns.mediator.Mediator */
-  extend: "org.puremvc.js.multicore.patterns.mediator.Mediator",
+  /** @extends puremvc.Mediator */
+  extend: "puremvc.Mediator",
 
   /**
    * A named shortcut to the <code>Shell</code> instance.  This

@@ -4,8 +4,8 @@
 Ext.namespace("Boxsplash.controller");
 Ext.define("Boxsplash.controller.ViewPrepCommand", {
 
-  /** @extends org.puremvc.js.multicore.patterns.command.SimpleCommand */
-  extend: "org.puremvc.js.multicore.patterns.command.SimpleCommand",
+  /** @extends puremvc.SimpleCommand */
+  extend: "puremvc.SimpleCommand",
 
   /**
    * @class <code>SimpleCommand</code> subclass that is
@@ -29,7 +29,7 @@ Ext.define("Boxsplash.controller.ViewPrepCommand", {
    * Executes the command. A <code>Notification</code>
    * instance will always be present as an argument to
    * this method.
-   * @param {org.puremvc.js.multicore.patterns.observer.Notification} notification The notification containing
+   * @param {puremvc.Notification} notification The notification containing
    * the view instance in the <code>body</code> property.
    * (In this case our Shell)
    */
