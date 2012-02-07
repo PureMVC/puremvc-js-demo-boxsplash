@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.view.ControlPanelMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.ControlPanelMediator = Ext.extend(puremvc.Mediator, {
   /**
    * @class The <code>Mediator</code> subclass attached to the
    * <code>ControlPanel</code> <code>View</code>. Its primary responsibilities here
@@ -11,7 +11,7 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * start/stop and config button clicks.  This <code>Mediator</code> is
    * registered by the <code>ShellMediator</code>'s constructor.
    *
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @param {Boxsplash.view.components.ControlPanel} viewComponent the <code>ControlPanel</code> instance
    * assigned to this mediator.
@@ -72,7 +72,7 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {

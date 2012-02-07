@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.ApplicationFacade.prototype
  */
-Ext.namespace('Boxsplash');
-Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
+Ext.namespace("Boxsplash");
+Boxsplash.ApplicationFacade = Ext.extend(puremvc.Facade, {
 
   /**
    * @class <p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
@@ -26,7 +26,7 @@ Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
    *        use." For more information on creating the concrete Facade, see page
    *        11 in "Implementation Idioms and Best Practices" by Cliff Hall.
    *        </p>
-   * @extends Puremvc.patterns.Facade
+   * @extends puremvc.Facade
    *
    * @param {string} key The multiton key.
    * 
@@ -124,10 +124,10 @@ Ext.apply(Boxsplash.ApplicationFacade, {
    * used throughout the application.
    */
   getInstance: function(key) {
-    if (!Puremvc.patterns.Facade.hasCore(key)) {
+    if (!puremvc.Facade.hasCore(key)) {
       new Boxsplash.ApplicationFacade(key);
     }
-    var retVal = Puremvc.patterns.Facade.getInstance(key);
+    var retVal = puremvc.Facade.getInstance(key);
     return retVal;
   }
 });

@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.view.ShellMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.ShellMediator = Ext.extend(puremvc.Mediator, {
   /**
    * A named shortcut to the <code>Shell</code> instance.  This
    * prevents us from having to reference the more
@@ -20,7 +20,7 @@ Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
    *
    * @param {Boxsplash.view.components.Shell} viewComponent the view component to register with the <code>ShellMediator</code>.
    *
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @see Boxsplash.view.components.Shell
    * @see Boxsplash.view.WorldSpaceMediator

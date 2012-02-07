@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.view.WorldSpaceMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.WorldSpaceMediator = Ext.extend(puremvc.Mediator, {
   /**
    * @class The <code>Mediator</code> subclass attached to the
    * <code>WorldSpace</code> <code>View</code>. Its primary responsibilities here
@@ -11,7 +11,7 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * registered by the <code>ShellMediator</code>'s constructor.
    *
    * @param {Boxsplash.view.WorldSpace} viewComponent The <code>WorldSpace</code> instance.
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @see Boxsplash.view.components.WorldSpace
    * @see Boxsplash.view.ShellMediator
@@ -79,7 +79,7 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {

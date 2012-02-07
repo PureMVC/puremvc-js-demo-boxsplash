@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.model.ConfigProxy.prototype
  */
-Ext.namespace('Boxsplash.model');
-Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
+Ext.namespace("Boxsplash.model");
+Boxsplash.model.ConfigProxy = Ext.extend(puremvc.Proxy, {
   /**
    * @class The Configuration <code>Proxy</code> used to house
    * and manipulate (if necessary) configuration data for the BoxSplash
@@ -12,10 +12,10 @@ Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
    * <p>In an MVC pattern, the <code>Proxy</code> acts upon notifications from the system
    * or calls to public methods from either <code>SimpleCommand</code>
    * subclasses or <code>Mediator</code> subclasses to retrieve, store, or
-   * manipulate data whether the data's physical location happens to be
+   * manipulate data whether the data"s physical location happens to be
    * remote or local.</p>
    *
-   * @extends Puremvc.patterns.Proxy
+   * @extends puremvc.Proxy
    *
    * @author Justin Wilaby
    * @author Tony DeFusco
@@ -23,12 +23,12 @@ Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
    * @constructs
    */
   constructor: function() {
-    // Config options to store in the 'data' property of this proxy.
-    var configOptions = [ new Boxsplash.model.vo.BoxConfigVO('Light', 20, 50, 500, '#FF0000'),
-      new Boxsplash.model.vo.BoxConfigVO('Medium-light', 40, 30, 400, '#00FF00'),
-      new Boxsplash.model.vo.BoxConfigVO('Medium', 80, 20, 300, '#0000FF'),
-      new Boxsplash.model.vo.BoxConfigVO('Heavy-medium', 160, 10, 200, '#FF00FF'),
-      new Boxsplash.model.vo.BoxConfigVO('Heavy (IE Killer)', 320, 5, 200, '#00FFFF') ];
+    // Config options to store in the "data" property of this proxy.
+    var configOptions = [ new Boxsplash.model.vo.BoxConfigVO("Light", 20, 50, 500, "#FF0000"),
+      new Boxsplash.model.vo.BoxConfigVO("Medium-light", 40, 30, 400, "#00FF00"),
+      new Boxsplash.model.vo.BoxConfigVO("Medium", 80, 20, 300, "#0000FF"),
+      new Boxsplash.model.vo.BoxConfigVO("Heavy-medium", 160, 10, 200, "#FF00FF"),
+      new Boxsplash.model.vo.BoxConfigVO("Heavy (IE Killer)", 320, 5, 200, "#00FFFF") ];
     Boxsplash.model.ConfigProxy.superclass.constructor.call(this, Boxsplash.model.ConfigProxy.NAME, configOptions);
   },
 

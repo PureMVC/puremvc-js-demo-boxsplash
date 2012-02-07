@@ -1,15 +1,15 @@
 /**
  * @lends Boxsplash.controller.ViewPrepCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.ViewPrepCommand = Ext.extend(puremvc.SimpleCommand, {
   /**
    * @class <code>SimpleCommand</code> subclass that is
    * responsible for preparing the primary View.  This is where the
    * <code>Mediator</code> subclass assigned to the Shell is
    * registered with the <code>Model</code>.
    *
-   * @extends Puremvc.patterns.SimpleCommand
+   * @extends puremvc.SimpleCommand
    *
    * @see Boxsplash.view.ShellMediator
    * @see Boxsplash.view.components.Shell
@@ -27,7 +27,7 @@ Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand
    * Executes the command. A <code>Notification</code>
    * instance will always be present as an argument to
    * this method.
-   * @param {Puremvc.patterns.Notification} notification The notification containing
+   * @param {puremvc.Notification} notification The notification containing
    * the view instance in the <code>body</code> property.
    * (In this case our Shell)
    */

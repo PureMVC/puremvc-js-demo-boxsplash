@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.controller.StartupCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.StartupCommand = Ext.extend(puremvc.MacroCommand, {
   /**
    * @class A <code>MacroCommand</code> subclass
    * used to satisfy or initialize dependency handling.<p>
@@ -10,7 +10,7 @@ Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, 
    * needs to be registered with the <code>View</code>
    * in order to begin communication with the system.</p>
    *
-   * @extends Puremvc.patterns.MacroCommand
+   * @extends puremvc.MacroCommand
    *
    * @author Justin Wilaby
    * @author Tony DeFusco

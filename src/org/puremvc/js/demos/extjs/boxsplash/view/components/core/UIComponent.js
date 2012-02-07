@@ -1,7 +1,7 @@
 /**
  * @lends Boxsplash.view.components.core.UIComponent.prototype
  */
-Ext.namespace('Boxsplash.view.components.core');
+Ext.namespace("Boxsplash.view.components.core");
 Boxsplash.view.components.core.UIComponent = Ext.extend(Ext.util.Observable, {
   /**
    * <code>true</code> if the component has

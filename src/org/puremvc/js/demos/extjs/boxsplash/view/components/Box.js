@@ -1,7 +1,7 @@
 /**
  * @lends Boxsplash.view.components.Box.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.Box = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class The particle used in the 3D animations.

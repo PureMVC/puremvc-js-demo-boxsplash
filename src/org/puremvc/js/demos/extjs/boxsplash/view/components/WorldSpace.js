@@ -1,7 +1,7 @@
 /**
  * @lends Boxsplash.view.components.WorldSpace.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.WorldSpace = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class <code>View</code> used as the space for the 3D box animations.

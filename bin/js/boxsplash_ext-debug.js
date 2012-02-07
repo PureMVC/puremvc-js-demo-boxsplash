@@ -1,8 +1,8 @@
 /**
  * @lends Boxsplash.ApplicationFacade.prototype
  */
-Ext.namespace('Boxsplash');
-Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
+Ext.namespace("Boxsplash");
+Boxsplash.ApplicationFacade = Ext.extend(puremvc.Facade, {
 
   /**
    * @class <p>A <i>concrete</i> <code>Facade</code> implementation used to facilitate the startup
@@ -26,7 +26,7 @@ Boxsplash.ApplicationFacade = Ext.extend(Puremvc.patterns.Facade, {
    *        use." For more information on creating the concrete Facade, see page
    *        11 in "Implementation Idioms and Best Practices" by Cliff Hall.
    *        </p>
-   * @extends Puremvc.patterns.Facade
+   * @extends puremvc.Facade
    *
    * @param {string} key The multiton key.
    * 
@@ -124,23 +124,23 @@ Ext.apply(Boxsplash.ApplicationFacade, {
    * used throughout the application.
    */
   getInstance: function(key) {
-    if (!Puremvc.patterns.Facade.hasCore(key)) {
+    if (!puremvc.Facade.hasCore(key)) {
       new Boxsplash.ApplicationFacade(key);
     }
-    var retVal = Puremvc.patterns.Facade.getInstance(key);
+    var retVal = puremvc.Facade.getInstance(key);
     return retVal;
   }
 });
 /**
  * @lends Boxsplash.controller.RetrieveConfigOptionCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(puremvc.SimpleCommand, {
   /**
    * @class <code>SimpleCommand</code> subclass
    * used to retrieve configuration data from the <code>ConfigProxy</code>.
    *
-   * @extends Puremvc.patterns.SimpleCommand
+   * @extends puremvc.SimpleCommand
    *
    * @see Boxsplash.model.ConfigProxy
    * @see Boxsplash.ApplicationFacade
@@ -158,7 +158,7 @@ Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.S
    * Fulfills the use case given by the <code>Notification</code>.
    * In this case, the retrieval of a specific <code>BoxConfigVO</code>.
    *
-   * @param {Puremvc.patterns.Notification} notification containing the location of a <code>BoxConfigVO</code>.
+   * @param {puremvc.Notification} notification containing the location of a <code>BoxConfigVO</code>.
    *
    * @see Boxsplash.model.vo.BoxConfigVO
    */
@@ -172,15 +172,15 @@ Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.S
 /**
  * @lends Boxsplash.controller.ModelPrepCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.ModelPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.ModelPrepCommand = Ext.extend(puremvc.SimpleCommand, {
   /**
    * @class <code>SimpleCommand</code> subclass that is
    * responsible for preparing the data <code>Model</code>.
    * This is where all <code>Proxy</code> subclasses are
    * registered with the <code>Model</code>.
    *
-   * @extends Puremvc.patterns.SimpleCommand
+   * @extends puremvc.SimpleCommand
    *
    * @author Justin Wilaby
    * @author Tony DeFusco
@@ -194,7 +194,7 @@ Boxsplash.controller.ModelPrepCommand = Ext.extend(Puremvc.patterns.SimpleComman
   /**
    * Registers the <code>ConfigProxy</code> with the <code>Model</code>.
    *
-   * @param {Puremvc.patterns.Notification} notification the <code>Notification</code> to handle.
+   * @param {puremvc.Notification} notification the <code>Notification</code> to handle.
    *
    * @see Boxsplash.model.ConfigProxy
    */
@@ -206,15 +206,15 @@ Boxsplash.controller.ModelPrepCommand = Ext.extend(Puremvc.patterns.SimpleComman
 /**
  * @lends Boxsplash.controller.ViewPrepCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.ViewPrepCommand = Ext.extend(puremvc.SimpleCommand, {
   /**
    * @class <code>SimpleCommand</code> subclass that is
    * responsible for preparing the primary View.  This is where the
    * <code>Mediator</code> subclass assigned to the Shell is
    * registered with the <code>Model</code>.
    *
-   * @extends Puremvc.patterns.SimpleCommand
+   * @extends puremvc.SimpleCommand
    *
    * @see Boxsplash.view.ShellMediator
    * @see Boxsplash.view.components.Shell
@@ -232,7 +232,7 @@ Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand
    * Executes the command. A <code>Notification</code>
    * instance will always be present as an argument to
    * this method.
-   * @param {Puremvc.patterns.Notification} notification The notification containing
+   * @param {puremvc.Notification} notification The notification containing
    * the view instance in the <code>body</code> property.
    * (In this case our Shell)
    */
@@ -249,8 +249,8 @@ Boxsplash.controller.ViewPrepCommand = Ext.extend(Puremvc.patterns.SimpleCommand
 /**
  * @lends Boxsplash.controller.StartupCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.StartupCommand = Ext.extend(puremvc.MacroCommand, {
   /**
    * @class A <code>MacroCommand</code> subclass
    * used to satisfy or initialize dependency handling.<p>
@@ -258,7 +258,7 @@ Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, 
    * needs to be registered with the <code>View</code>
    * in order to begin communication with the system.</p>
    *
-   * @extends Puremvc.patterns.MacroCommand
+   * @extends puremvc.MacroCommand
    *
    * @author Justin Wilaby
    * @author Tony DeFusco
@@ -282,7 +282,7 @@ Boxsplash.controller.StartupCommand = Ext.extend(Puremvc.patterns.MacroCommand, 
   }
 });
 
-Ext.namespace('Boxsplash.model.vo');
+Ext.namespace("Boxsplash.model.vo");
 /**
  * @class The primary <i>Value Object</i> used to store and retrieve
  * configuration data used in the application.
@@ -303,8 +303,8 @@ Boxsplash.model.vo.BoxConfigVO = function(id /* String */, numBoxes /* int */, b
 /**
  * @lends Boxsplash.model.ConfigProxy.prototype
  */
-Ext.namespace('Boxsplash.model');
-Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
+Ext.namespace("Boxsplash.model");
+Boxsplash.model.ConfigProxy = Ext.extend(puremvc.Proxy, {
   /**
    * @class The Configuration <code>Proxy</code> used to house
    * and manipulate (if necessary) configuration data for the BoxSplash
@@ -314,10 +314,10 @@ Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
    * <p>In an MVC pattern, the <code>Proxy</code> acts upon notifications from the system
    * or calls to public methods from either <code>SimpleCommand</code>
    * subclasses or <code>Mediator</code> subclasses to retrieve, store, or
-   * manipulate data whether the data's physical location happens to be
+   * manipulate data whether the data"s physical location happens to be
    * remote or local.</p>
    *
-   * @extends Puremvc.patterns.Proxy
+   * @extends puremvc.Proxy
    *
    * @author Justin Wilaby
    * @author Tony DeFusco
@@ -325,12 +325,12 @@ Boxsplash.model.ConfigProxy = Ext.extend(Puremvc.patterns.Proxy, {
    * @constructs
    */
   constructor: function() {
-    // Config options to store in the 'data' property of this proxy.
-    var configOptions = [ new Boxsplash.model.vo.BoxConfigVO('Light', 20, 50, 500, '#FF0000'),
-      new Boxsplash.model.vo.BoxConfigVO('Medium-light', 40, 30, 400, '#00FF00'),
-      new Boxsplash.model.vo.BoxConfigVO('Medium', 80, 20, 300, '#0000FF'),
-      new Boxsplash.model.vo.BoxConfigVO('Heavy-medium', 160, 10, 200, '#FF00FF'),
-      new Boxsplash.model.vo.BoxConfigVO('Heavy (IE Killer)', 320, 5, 200, '#00FFFF') ];
+    // Config options to store in the "data" property of this proxy.
+    var configOptions = [ new Boxsplash.model.vo.BoxConfigVO("Light", 20, 50, 500, "#FF0000"),
+      new Boxsplash.model.vo.BoxConfigVO("Medium-light", 40, 30, 400, "#00FF00"),
+      new Boxsplash.model.vo.BoxConfigVO("Medium", 80, 20, 300, "#0000FF"),
+      new Boxsplash.model.vo.BoxConfigVO("Heavy-medium", 160, 10, 200, "#FF00FF"),
+      new Boxsplash.model.vo.BoxConfigVO("Heavy (IE Killer)", 320, 5, 200, "#00FFFF") ];
     Boxsplash.model.ConfigProxy.superclass.constructor.call(this, Boxsplash.model.ConfigProxy.NAME, configOptions);
   },
 
@@ -367,7 +367,7 @@ Ext.apply(Boxsplash.model.ConfigProxy, {
 /**
  * @lends Boxsplash.view.components.core.UIComponent.prototype
  */
-Ext.namespace('Boxsplash.view.components.core');
+Ext.namespace("Boxsplash.view.components.core");
 Boxsplash.view.components.core.UIComponent = Ext.extend(Ext.util.Observable, {
   /**
    * <code>true</code> if the component has
@@ -524,7 +524,7 @@ Ext.apply(Boxsplash.view.components.core.UIComponent, {
 /**
  * @lends Boxsplash.view.components.Box.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.Box = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class The particle used in the 3D animations.
@@ -588,7 +588,7 @@ Boxsplash.view.components.Box = Ext.extend(Boxsplash.view.components.core.UIComp
 /**
  * @lends Boxsplash.view.components.ControlPanel.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.ControlPanel = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class The <code>View</code> used to control the world space and
@@ -789,7 +789,7 @@ Boxsplash.view.components.ControlPanel = Ext.extend(Boxsplash.view.components.co
 /**
  * @lends Boxsplash.view.components.WorldSpace.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.WorldSpace = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class <code>View</code> used as the space for the 3D box animations.
@@ -1130,7 +1130,7 @@ Boxsplash.view.components.WorldSpace = Ext.extend(Boxsplash.view.components.core
 /**
  * @lends Boxsplash.view.components.Shell.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.Shell = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class Serves as the main application's <code>View</code>.
@@ -1180,8 +1180,8 @@ Boxsplash.view.components.Shell = Ext.extend(Boxsplash.view.components.core.UICo
 /**
  * @lends Boxsplash.view.ControlPanelMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.ControlPanelMediator = Ext.extend(puremvc.Mediator, {
   /**
    * @class The <code>Mediator</code> subclass attached to the
    * <code>ControlPanel</code> <code>View</code>. Its primary responsibilities here
@@ -1190,7 +1190,7 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * start/stop and config button clicks.  This <code>Mediator</code> is
    * registered by the <code>ShellMediator</code>'s constructor.
    *
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @param {Boxsplash.view.components.ControlPanel} viewComponent the <code>ControlPanel</code> instance
    * assigned to this mediator.
@@ -1251,7 +1251,7 @@ Boxsplash.view.ControlPanelMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {
@@ -1332,8 +1332,8 @@ Ext.apply(Boxsplash.view.ControlPanelMediator, {
 /**
  * @lends Boxsplash.view.WorldSpaceMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.WorldSpaceMediator = Ext.extend(puremvc.Mediator, {
   /**
    * @class The <code>Mediator</code> subclass attached to the
    * <code>WorldSpace</code> <code>View</code>. Its primary responsibilities here
@@ -1342,7 +1342,7 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * registered by the <code>ShellMediator</code>'s constructor.
    *
    * @param {Boxsplash.view.WorldSpace} viewComponent The <code>WorldSpace</code> instance.
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @see Boxsplash.view.components.WorldSpace
    * @see Boxsplash.view.ShellMediator
@@ -1410,7 +1410,7 @@ Boxsplash.view.WorldSpaceMediator = Ext.extend(Puremvc.patterns.Mediator, {
    * the <code>Notification</code> is listed in the <code>listNotificationInterests()</code>
    * return value.
    *
-   * @param {Puremvc.patterns.Notification} notification the notification to act upon.
+   * @param {puremvc.Notification} notification the notification to act upon.
    */
   handleNotification: function(notification /* Notification */) {
     switch (notification.getName()) {
@@ -1448,8 +1448,8 @@ Ext.apply(Boxsplash.view.WorldSpaceMediator, {
 /**
  * @lends Boxsplash.view.ShellMediator.prototype
  */
-Ext.namespace('Boxsplash.view');
-Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
+Ext.namespace("Boxsplash.view");
+Boxsplash.view.ShellMediator = Ext.extend(puremvc.Mediator, {
   /**
    * A named shortcut to the <code>Shell</code> instance.  This
    * prevents us from having to reference the more
@@ -1467,7 +1467,7 @@ Boxsplash.view.ShellMediator = Ext.extend(Puremvc.patterns.Mediator, {
    *
    * @param {Boxsplash.view.components.Shell} viewComponent the view component to register with the <code>ShellMediator</code>.
    *
-   * @extends Puremvc.patterns.Mediator
+   * @extends puremvc.Mediator
    *
    * @see Boxsplash.view.components.Shell
    * @see Boxsplash.view.WorldSpaceMediator

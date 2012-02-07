@@ -1,7 +1,7 @@
 /**
  * @lends Boxsplash.view.components.ControlPanel.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.ControlPanel = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class The <code>View</code> used to control the world space and

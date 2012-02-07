@@ -1,7 +1,7 @@
 /**
  * @lends Boxsplash.view.components.Shell.prototype
  */
-Ext.namespace('Boxsplash.view.components');
+Ext.namespace("Boxsplash.view.components");
 Boxsplash.view.components.Shell = Ext.extend(Boxsplash.view.components.core.UIComponent, {
   /**
    * @class Serves as the main application's <code>View</code>.

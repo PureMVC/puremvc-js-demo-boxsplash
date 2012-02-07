@@ -1,13 +1,13 @@
 /**
  * @lends Boxsplash.controller.RetrieveConfigOptionCommand.prototype
  */
-Ext.namespace('Boxsplash.controller');
-Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.SimpleCommand, {
+Ext.namespace("Boxsplash.controller");
+Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(puremvc.SimpleCommand, {
   /**
    * @class <code>SimpleCommand</code> subclass
    * used to retrieve configuration data from the <code>ConfigProxy</code>.
    *
-   * @extends Puremvc.patterns.SimpleCommand
+   * @extends puremvc.SimpleCommand
    *
    * @see Boxsplash.model.ConfigProxy
    * @see Boxsplash.ApplicationFacade
@@ -25,7 +25,7 @@ Boxsplash.controller.RetrieveConfigOptionCommand = Ext.extend(Puremvc.patterns.S
    * Fulfills the use case given by the <code>Notification</code>.
    * In this case, the retrieval of a specific <code>BoxConfigVO</code>.
    *
-   * @param {Puremvc.patterns.Notification} notification containing the location of a <code>BoxConfigVO</code>.
+   * @param {puremvc.Notification} notification containing the location of a <code>BoxConfigVO</code>.
    *
    * @see Boxsplash.model.vo.BoxConfigVO
    */

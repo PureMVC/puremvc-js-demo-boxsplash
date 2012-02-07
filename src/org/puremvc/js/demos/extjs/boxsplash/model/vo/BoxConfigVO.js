@@ -1,4 +1,4 @@
-Ext.namespace('Boxsplash.model.vo');
+Ext.namespace("Boxsplash.model.vo");
 /**
  * @class The primary <i>Value Object</i> used to store and retrieve
  * configuration data used in the application.
