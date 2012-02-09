@@ -1,8 +1,8 @@
-<project name="Demo_JS_BoxSplash" basedir=".." default="default">
+<project name="Demo_JS_BoxSplash" basedir=".." default="build">
   <property name="output-dir" value="${basedir}/bin/js"/>
-  <property name="output-file" value="boxsplash_ext-debug.js"/>
+  <property name="output-file" value="puremvc-demo-boxsplash-extjs.js"/>
   
-  <target name="default" depends="cleanup, minify"/>
+  <target name="build" depends="cleanup, concat, minify"/>
 
   <target name="cleanup" description="Remove any previously generated artifacts.">
     <delete failonerror="false">
@@ -60,7 +60,7 @@
         preserveallsemicolons="true"
         preservestringlitterals="true"
         outputfolder="${output-dir}"
-        outputsuffix="_Mini"
+        outputsuffix=".min"
         >
       <fileset dir="${output-dir}">
         <include name="${output-file}"/>

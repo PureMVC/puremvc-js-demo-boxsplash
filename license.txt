@@ -1,5 +1,4 @@
 PureMVC/ExtJS Javascript Demo - Box Splash 
-Copyright(c) 2010 Tony DeFusco <tony.defusco@puremvc.org>
 Adapted from MooTools Port By Justin Wilaby <justin.wilaby@puremvc.org>
 Copyright(c) 2010 Justin Wilaby, Some rights reserved.
 PureMVC - Copyright(c) 2006-2010 Futurescale, Inc., Some rights reserved.
