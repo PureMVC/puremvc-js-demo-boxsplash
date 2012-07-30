@@ -1,0 +1,70 @@
+<project name="Demo_JS_BoxSplash ExtJS4" basedir=".." default="build">
+  <property name="output-dir" value="${basedir}/bin/js"/>
+  <property name="output-file" value="puremvc-demo-boxsplash-ext4.js"/>
+  
+  <target name="build" depends="cleanup, minify"/>
+
+  <target name="cleanup" description="Remove any previously generated artifacts.">
+    <delete failonerror="false">
+      <fileset dir="${output-dir}" includes="puremvc-demo-boxsplash-ext4*"/>
+    </delete>
+    <mkdir dir="${output-dir}"/>
+  </target>
+
+  <target name="concat" description="Concatenate javascript source files into a single library file.">
+    <concat
+        destfile="${output-dir}/${output-file}"
+        append="no"
+        encoding="UTF-8"
+        outputencoding="UTF-8"
+        fixlastline="true"
+        >
+      <!--
+        We need to respect an order for class declaration in ExtJS
+        to allow classes to inherit from their dependencies.  Thus,
+        each file is specified here individually in sequential order.
+      -->
+      <path>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/ApplicationFacade.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/controller/RetrieveConfigOptionCommand.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/controller/ModelPrepCommand.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/controller/ViewPrepCommand.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/controller/StartupCommand.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/model/vo/BoxConfigVO.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/model/ConfigProxy.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/components/core/UIComponent.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/components/Box.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/components/ControlPanel.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/components/WorldSpace.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/components/Shell.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/ControlPanelMediator.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/WorldSpaceMediator.js"/>
+        <pathelement location="${basedir}/src/org/puremvc/js/demos/extjs/boxsplash/view/ShellMediator.js"/>
+      </path>
+    </concat>      
+  </target>
+  
+  <target name="minify" description="Minify a set of files" depends="concat">
+    <taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
+      <classpath>
+        <pathelement path="${basedir}/build/lib/yuicompressor-2.4.2.jar" />
+        <pathelement path="${basedir}/build/lib/yuiant.jar" />
+      </classpath>
+    </taskdef>
+
+    <yuicompress
+        charset="UTF-8"
+        linebreak="80"
+        warn="false"
+        munge="no"
+        preserveallsemicolons="true"
+        preservestringlitterals="true"
+        outputfolder="${output-dir}"
+        outputsuffix=".min"
+        >
+      <fileset dir="${output-dir}">
+        <include name="${output-file}"/>
+      </fileset>
+    </yuicompress>
+  </target>
+</project>

@@ -1,16 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Box Splash</title>
-	<link rel="stylesheet" href="css/boxsplash.css" type="text/css"/>
-	<script type="text/javascript" src="js/mootools-1.2.4-core-nc.js"></script>
-	<script type="text/javascript" src="js/PureMVC_JS_2_0_Mini.js"></script>
-	<script type="text/javascript" src="js/boxsplash.js"></script>
-    </head>
-    <body>
-        <div id="shell"></div>
-	<div id="control-panel"></div>
-	<div id="world-space"></div>
-    </body>
+<html>
+<head>
+  <title>Box Splash Demo (ExtJS 4)</title>
+  <link rel="stylesheet" href="css/boxsplash.css" type="text/css"/>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/puremvc-1.0.min.js"></script>
+  <script type="text/javascript" src="js/puremvc-demo-boxsplash-ext4.js"></script>
+  <script type="text/javascript">
+    Ext.onReady(function() {
+      Ext.DomHelper.append(document.body, {id:'shell', tag:'div'});
+      Ext.DomHelper.append(document.body, {id:'control-panel', tag:'div'});
+      Ext.DomHelper.append(document.body, {id:'world-space', tag:'div'});
+
+      var app = new Boxsplash.view.components.Shell();
+      app.initializeChildren();
+      app.childrenInitialized();
+      app.initializationComplete();
+
+      Boxsplash.ApplicationFacade.getInstance("BoxsplashApp").startup(app);
+    });
+  </script>
+</head>
+<body>
+</body>
 </html>
