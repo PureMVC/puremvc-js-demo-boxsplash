@@ -3,7 +3,7 @@ This demo illustrates a pure JavaScript / CSS application that creates a variabl
 
 The pseudo-classes are written in ExtJS-style rather than PureMVC's optional built-in style, demonstrating how PureMVC can be used even when the class emulation is provided by another framework.
 
-* [Live Demo](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/demos/JS/Demo_JS_BoxSplash/extjs4&desc=PureMVC%20JavaScript%20Demo:%20Box%20Splash)
+* [Live Demo](http://puremvc.org/pages/demos/JS/Demo_JS_BoxSplash/extjs4)
 * [Discussion](http://forums.puremvc.org/index.php?topic=1638.0)
 
 ## Screenshot
